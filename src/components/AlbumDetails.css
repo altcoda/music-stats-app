@@ -1,0 +1,66 @@
+.details {
+    display: flex;
+    flex-direction: row;
+    top: 70px;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    font-size: 16px;
+	color: var(--text);
+}
+
+.details > div {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.details p {
+    margin: 10px 0;
+}
+
+.details h1 {
+    font-size: 22px;
+    margin: 10px;
+    color: #000000;
+}
+
+.details h1 b {
+    font-weight: 400;
+}
+
+.details img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px auto;
+    border: 5px solid #000000;
+}
+
+.tags {
+    display: flex;
+    align-items: flex-start;
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.tag {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid var(--med-border);
+}
+
+.tracks {
+    display: flex;
+    flex: 1;
+	align-items: flex-start;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.list {
+	display: flex;
+    flex-direction: column!important;
+}
+
+.list li {
+    padding: 5px;
+}

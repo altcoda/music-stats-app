@@ -1,0 +1,42 @@
+.two-col {
+    display: flex;
+    flex-direction: row;
+    top: 70px;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    font-size: 16px;
+	color: var(--text);
+}
+
+.two-col > div {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.two-col .left {
+    background-color: #cecece;
+}
+
+.two-col .right {
+    background-color: #f3f3f3;
+    width: 100%;
+    flex-grow: 3;
+}
+
+.two-col p {
+    margin: 10px 0;
+}
+
+.two-col h1 {
+    font-size: 22px;
+    margin: 10px;
+    color: #000000;
+}
+
+.two-col img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px auto;
+    border: 5px solid #000000;
+}

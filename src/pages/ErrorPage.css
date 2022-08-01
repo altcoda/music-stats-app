@@ -1,0 +1,15 @@
+.error h1 {
+    font-size: 50px;
+}
+
+.error button {
+    width: auto;
+    background-color: transparent;
+    padding: 10px;
+    border: 3px solid #FFFFFF;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}

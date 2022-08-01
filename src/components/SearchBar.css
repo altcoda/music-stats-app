@@ -1,0 +1,9 @@
+.search-form input,
+.search-button {
+    box-shadow: none;
+}
+
+.search-button {
+    min-width: 20%;
+    max-width: 200px;
+}
