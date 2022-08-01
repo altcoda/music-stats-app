@@ -46,3 +46,7 @@ export const SelectTag = () => {
         </Fragment>
     )
 }
+
+SelectTag.propTypes = {
+    defaultTag: PropTypes.string.isRequired
+}

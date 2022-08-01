@@ -41,5 +41,6 @@ export const Albums = ({className}) => {
 
 
 Albums.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    defaultTag: PropTypes.string
 };

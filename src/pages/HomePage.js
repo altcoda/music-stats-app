@@ -70,7 +70,7 @@ export const HomePage = (props) => {
             </Header>
 
             <Header id="albums-header" className="albums-header reset-height" style={{backgroundColor: '#FFFFFF'}}>
-                <Albums className="albums h-scroll full-width"/>
+                <Albums defaultTag="rock" className="albums h-scroll full-width"/>
             </Header>
 
             <Header id="info-header" className="info-header" bgd="linear-gradient(rgba(0, 0, 0, 0), rgba(171, 113, 255, 0.2)), url(/img/UI/music-room-1.jpg)">

@@ -142,10 +142,12 @@ form input {
   border-radius: 5px;
 }
 
+textarea,
 input {
   border: 2px solid var(--light-grey);
 }
 
+textarea:focus,
 input:focus {
   outline:0;
   border: 2px solid var(--mid-grey);
@@ -186,7 +188,11 @@ textarea {
   padding: 10px;
   margin: 10px auto;
   border-radius: 5px;
-  border: 1px solid var(--med-border);
+}
+
+.form .select-tags {
+  margin: 10px;
+  padding: 0;
 }
 
 .standart {
