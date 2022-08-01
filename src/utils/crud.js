@@ -101,3 +101,29 @@ export const getUniqueAlbums = async() => {
     const albums = new Parse.Query(Album);
 
 }
+
+// TODO
+export const getUser = async(id) => {
+    const User = Parse.Object.extend("User");
+    const user = new User();
+    console.log(user)
+    return user.get(id);
+}
+
+// TODO
+export const editUser = async(id, data) => {
+    const User = Parse.Object.extend("User");
+    const user = new User();
+    
+    const res = user.get(id)
+        .then((user) => {
+            if(data.avatar) {
+                user.set('avatar[url]', data.avatar)
+            }
+            user.save()
+        }, (err) => {
+            alert('Failed to update. Error:' + err.message)
+        });
+    
+    return res;
+}

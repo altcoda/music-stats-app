@@ -6,10 +6,12 @@ export const initParse = () => {
   Parse.serverURL = process.env.REACT_APP_SERVER_URL;
 };
 
+
 export const getCurrentUser = () => {
   const currentUser = localStorage.getItem(`Parse/${process.env.REACT_APP_APP_ID}/currentUser`);
   return JSON.parse(currentUser)
 };
+
 
 export const logoutUser = async () => {
   try {

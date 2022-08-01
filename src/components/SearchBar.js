@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 import './SearchBar.css';
+import { FaSearch } from 'react-icons/fa';
 
 
 export const SearchBar = () => {
@@ -20,10 +21,10 @@ export const SearchBar = () => {
             className="search-form"
         >
             <input
-                placeholder="Search"
+                placeholder="Search by album/artist name"
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button type="submit" id="search-button" className="search-button standart">Search</button>
+            <button type="submit" id="search-button" className="search-button standart">Search <FaSearch /></button>
         </form>
     );
 }

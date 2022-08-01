@@ -22,7 +22,6 @@ export const RegisterPage = (props) => {
         alert('Username must be at least 6 characters long.');
         return;
     }
-    // need to verify email better
 
     let newUser = new Parse.User();
 

@@ -2,10 +2,10 @@ import { Albums } from '../components/Albums';
 import './ErrorPage.css';
 
 
-export const AlbumsPage = (props) => {
+export const AlbumsPage = () => {
     return(
-        <div className="flex-column">
-            <Albums />
+        <div className="page">
+            <Albums className="albums" />
         </div>
     )
 }

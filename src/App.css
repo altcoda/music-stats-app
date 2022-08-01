@@ -13,7 +13,7 @@
   --primary-color: #fff;
   --secondary-color: #fd5eab;
   --light-grey: #f3f3f3;
-  --mid-grey: #cecece;
+  --med-grey: #cecece;
   --green: #5efd73;
   --red: rgb(253, 94, 94);
   --violet: #CDC6FF;
@@ -150,7 +150,7 @@ input {
 textarea:focus,
 input:focus {
   outline:0;
-  border: 2px solid var(--mid-grey);
+  border: 2px solid var(--med-grey);
 }
 
 input::placeholder {
@@ -190,9 +190,21 @@ textarea {
   border-radius: 5px;
 }
 
+.page {
+  position: relative;
+  padding: 20px 0 70px 0;
+}
+
 .form .select-tags {
   margin: 10px;
   padding: 0;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  border: 1px solid var(--med-border);
 }
 
 .standart {
@@ -286,7 +298,7 @@ textarea {
   height: 0;
 }
 
-.h-scroll {
+.h-scroll .albums {
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -325,7 +337,7 @@ textarea {
   padding: 20px;
   text-align: center;
   font-size: 14px;
-  background-color: var(--mid-grey);
+  background-color: var(--med-grey);
 }
 
 .two-col .right {

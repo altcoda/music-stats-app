@@ -20,8 +20,6 @@ export const Artist = (props) => {
         initArtist()
     },[])
 
-    console.log(artist.bio)
-
     return (artist &&
         <div id="artist" className="artist two-col">
             <div class="left">

@@ -45,7 +45,7 @@
     width: 100%;
     text-transform: uppercase;
     font-size: 20px;
-    border-bottom: 1px solid var(--mid-grey);
+    border-bottom: 1px solid var(--med-grey);
 }
 
 .search .select-tags > div {

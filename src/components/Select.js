@@ -1,5 +1,4 @@
 import { Fragment, useContext } from 'react';
-import { PropTypes } from 'prop-types';
 import { GlobalContext } from '../context/GlobalProvider';
 import Select from 'react-select';
 
@@ -23,10 +22,6 @@ export const SelectTags = ({setTags}) => {
     )
 }
 
-SelectTags.propTypes = {
-    setTags: PropTypes.func.isRequired
-}
-
 
 export const SelectTag = () => {
     const {tagOptions} = useContext(GlobalContext);
@@ -34,19 +29,16 @@ export const SelectTag = () => {
 
     return(tagOptions &&
         <Fragment>
-            <label htmlFor="tags">Tags</label>
+            <label htmlFor="tag" className="hidden">Tag</label>
             <Select
                 id="select-tags"
                 defaultValue={[]}
+                placeholder="Select tag..."
                 className="select-tags"
-                name="tags"
+                name="tag"
                 onChange={(selected) => setQuery({...query, tag: selected.value})}
                 options={tagOptions}
             />
         </Fragment>
     )
-}
-
-SelectTag.propTypes = {
-    defaultTag: PropTypes.string.isRequired
 }

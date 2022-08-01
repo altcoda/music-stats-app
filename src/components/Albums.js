@@ -5,9 +5,10 @@ import { Album } from './Album';
 import './Albums.css';
 import { getAlbums } from '../utils/crud';
 import { Search } from './Search';
+import { Pagination } from './Pagination';
 
 
-export const Albums = ({className}) => {
+export const Albums = ({className, limit}) => {
 
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
     const {query} = useContext(GlobalContext);
@@ -25,22 +26,27 @@ export const Albums = ({className}) => {
         <Fragment>
             <Search />
             <ul className={className && className}>
-                {albumsList && albumsList
-                    .filter(album => Boolean(album.mbid))
-                    .filter(album => 
+            {albumsList && albumsList
+                .filter(album => Boolean(album.mbid))
+                .filter(album =>
+                    query.search ?
+                    (
                         album.name.toLowerCase()
                         .includes(query.search.toLowerCase()) ||
                         album.artist.name.toLowerCase()
                         .includes(query.search.toLowerCase())
                     )
-                    .map((album, i) => <li key={i}><Album album={album} /></li>)}
+                    : album
+                )
+                .slice(0,  limit ? limit : albumsList.length - 3)
+                .map((album, i) => <li key={i}><Album album={album} /></li>)}
             </ul>
+            <Pagination />
         </Fragment>
     );
 }
 
 
 Albums.propTypes = {
-    className: PropTypes.string,
-    defaultTag: PropTypes.string
+    className: PropTypes.string
 };

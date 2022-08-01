@@ -52,7 +52,7 @@ export const HorizScroll = ({children}) => {
     )
 }
 
-export const HomePage = (props) => {
+export const HomePage = () => {
 
     const {user} = useContext(GlobalContext);
     const {siteName} = useContext(GlobalContext);
@@ -69,8 +69,8 @@ export const HomePage = (props) => {
                 </section>
             </Header>
 
-            <Header id="albums-header" className="albums-header reset-height" style={{backgroundColor: '#FFFFFF'}}>
-                <Albums defaultTag="rock" className="albums h-scroll full-width"/>
+            <Header id="albums-header" className="albums-header h-scroll reset-height" style={{backgroundColor: '#FFFFFF'}}>
+                <Albums limit="12" className="albums"/>
             </Header>
 
             <Header id="info-header" className="info-header" bgd="linear-gradient(rgba(0, 0, 0, 0), rgba(171, 113, 255, 0.2)), url(/img/UI/music-room-1.jpg)">

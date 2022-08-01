@@ -14,7 +14,7 @@
     box-shadow: var(--lightest-box-shadow);
 }
 
-nav > ul > li {
+.navbar nav > ul > li {
     height: 70px;
 }
 
@@ -55,7 +55,6 @@ nav > ul > li {
 
 .dropdown {
     background: var(--primary-color);
-    text-align: center;
 }
 
 .dropdown:hover {
@@ -71,6 +70,20 @@ nav > ul > li {
     margin: 0 0 0 10px;
 }
 
+.albums-nav li {
+    justify-content: start;
+}
+
+.albums-nav,
+.albums-nav > ul {
+    width: 150px;
+}
+
+.user-nav,
+.user-nav > ul {
+    width: 100px;
+}
+
 .albums-nav,
 .albums-nav > ul,
 .user-nav,
@@ -78,7 +91,6 @@ nav > ul > li {
     position: relative;
     align-self: flex-start;
     display: flex;
-    width: 100px;
     flex-direction: column!important;
     padding: 0;
 }

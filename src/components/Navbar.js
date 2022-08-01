@@ -1,5 +1,6 @@
 import './Navbar.css';
 import { useContext } from 'react';
+import { FaRegPlusSquare } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalProvider';
 import { logoutUser } from '../utils/users';
@@ -37,7 +38,9 @@ export const Navbar = () => {
             </li>
             {user &&
             <li className="dropdown hidden">
-                <Link to="/albums/add">Add Album</Link>
+                <Link to="/albums/add">
+                  <FaRegPlusSquare /> Add Album
+                </Link>
             </li>}
         </ul>
       </nav>

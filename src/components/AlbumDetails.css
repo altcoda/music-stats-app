@@ -46,6 +46,7 @@
     padding: 5px;
     margin: 5px;
     border: 1px solid var(--med-border);
+    border-radius: 5px;
 }
 
 .tracks {

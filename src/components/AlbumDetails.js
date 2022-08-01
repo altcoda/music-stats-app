@@ -28,7 +28,7 @@ export const AlbumDetails = () => {
                 <div class="left">
                     <img src={album.image && album.image[3]['#text']} alt="" />
                     <h1>
-                        <b className="albumName">{album.name}</b> by <b className="artistName">{album.artist}</b>
+                        <b className="albumName">{album.name && album.name}</b> by <b className="artistName">{album.artist && album.artist}</b>
                     </h1>
                     <section>
                         {album.playcount && <p><b>playcount:</b> {album.playcount}</p>}

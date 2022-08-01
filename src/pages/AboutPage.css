@@ -4,6 +4,12 @@
     flex-direction: row;
     align-items: stretch;
     color: #000000;
+    font-size: 18px;
+    text-align: center;
+}
+
+.about-header h2 {
+    font-size: 22px;
 }
 
 .about-header > div {
@@ -23,6 +29,8 @@
     align-self: center;
 }
 
-.about-header h2 {
-    font-size: 18px;
+@media only screen and (max-width: 900px) {
+    .about-header .flexImg {
+        background-position: right;
+    }
 }
