@@ -15,8 +15,8 @@ export const AddAlbum = () => {
     const navigate = useNavigate();
 
     const onAddAlbum = (e) => {
-        // adding cover doesn't work
-        // console.log(cover)
+        // adding cover and date doesn't work
+        // console.log(release_date, cover)
         addAlbum({ name, artist, description, tags, release_date: date, cover });
         navigate('/');
     };
