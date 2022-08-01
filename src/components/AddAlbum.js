@@ -17,8 +17,14 @@ export const AddAlbum = () => {
     const onAddAlbum = (e) => {
         // adding cover and date doesn't work
         // console.log(release_date, cover)
-        addAlbum({ name, artist, description, tags, release_date: date, cover });
-        navigate('/');
+        try {
+            addAlbum({ name, artist, description, tags, release_date: date, cover });
+        } catch(err) {
+            console.log(err)
+            return
+        }
+        
+        navigate('/')
     };
 
     return (

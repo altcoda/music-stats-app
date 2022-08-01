@@ -19,11 +19,8 @@ export const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const loggedInUser = await Parse.User.logIn(username, password);
-      
+      await Parse.User.logIn(username, password);
       const currentUser = await getCurrentUser();
-      alert(`Success! ${loggedInUser.get('username')} has successfully signed in!`);
-        console.log(currentUser)
       setUser(currentUser)
 
       setUsername('')

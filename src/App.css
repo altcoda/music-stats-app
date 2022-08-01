@@ -142,14 +142,6 @@ form input {
   border-radius: 5px;
 }
 
-form input {
-  box-shadow: var(--lightest-box-shadow);
-}
-
-form button {
-  box-shadow: var(--light-box-shadow);
-}
-
 input {
   border: 2px solid var(--light-grey);
 }

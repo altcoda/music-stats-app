@@ -56,8 +56,7 @@ export const addAlbum = async(data) => {
         const result = await album.save();
         alert(`Album ${result.get('name')} by ${result.get('artist')} added successfully!`);
     } catch(err) {
-        alert('Failed to add album')
-        console.log(err.message)
+        alert('Failed to add album. Error:' + err.message)
     }
 }
 
@@ -71,8 +70,7 @@ export const editAlbum = async(id, data) => {
         // album.set('name', 'Midnight')
         // album.save();
         }, (err) => {
-            alert('Failed to update')
-            console.log(err.message)
+            alert('Failed to update. Error:' + err.message)
         });
     
     return res;
@@ -89,8 +87,7 @@ export const deleteAlbum = async(id) => {
     obj.destroy().then((obj) => {
         // The object was deleted
     }, (err) => {
-        alert('Failed to delete.')
-        console.log(err.message)
+        alert('Failed to delete. Error:' + err.message)
     })
     }, (err) => {
         alert('Object wasn\'t found.')
