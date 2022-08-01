@@ -27,16 +27,18 @@ export const Albums = ({className}) => {
             <ul className={className && className}>
                 {albumsList && albumsList
                     .filter(album => Boolean(album.mbid))
-                    .filter(album => album.name.toLowerCase().includes(query.search.toLowerCase()) || album.artist.name.toLowerCase().includes(query.search.toLowerCase()))
-                    .map((album, i) => 
-                        <li key={i}><Album album={album} /></li>
-                )}
+                    .filter(album => 
+                        album.name.toLowerCase()
+                        .includes(query.search.toLowerCase()) ||
+                        album.artist.name.toLowerCase()
+                        .includes(query.search.toLowerCase())
+                    )
+                    .map((album, i) => <li key={i}><Album album={album} /></li>)}
             </ul>
         </Fragment>
     );
 }
 
-//.filter(album => album.artist.name === query.seach || album.name === query.search)
 
 Albums.propTypes = {
     className: PropTypes.string

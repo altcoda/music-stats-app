@@ -32,11 +32,11 @@ export const Navbar = () => {
             <li style={{height: '70px'}} onClick={toggleAlbumsMenu}>
                 Albums
             </li>
-            <li onClick={toggleAlbumsMenu} className="dropdown hidden">
+            <li className="dropdown hidden">
                 <Link to="/albums">Albums</Link>
             </li>
             {user &&
-            <li onClick={toggleAlbumsMenu} className="dropdown hidden">
+            <li className="dropdown hidden">
                 <Link to="/albums/add">Add Album</Link>
             </li>}
         </ul>
@@ -48,7 +48,7 @@ export const Navbar = () => {
             <li className="icon" onClick={toggleUserMenu}>
               <img src={user.avatar && user.avatar.url} alt="user icon" />
             </li>
-            <li className="dropdown hidden" onClick={toggleUserMenu}>
+            <li className="dropdown hidden">
               <Link to={`/profile/${user.objectId}`}>Profile</Link>
             </li>
             <li className="dropdown hidden" onClick={onUserLogout}>

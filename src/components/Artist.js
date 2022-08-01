@@ -27,12 +27,30 @@ export const Artist = (props) => {
             <div class="left">
                 <img src={artist.image && artist.image[3]['#text']} alt="" />
                 <h1><b className="albumName">{artist.name}</b></h1>
-                {artist.bio && <section id="summary" className="summary">
+                {artist.bio &&
+                <section id="summary" className="summary">
                     <p dangerouslySetInnerHTML={parseHTML(artist.bio.summary)} />
                 </section>}
             </div>
             <div class="right">
-
+                {artist.tags &&
+                    <section id="tags" className="tags">
+                        <ul>
+                            {artist.tags.tag.map(tag => <li key={tag.name} class="tag">{tag.name}</li>)}
+                        </ul>
+                    </section>}
+                
+                {artist.bio &&
+                <section id="bio" className="bio">
+                    <p dangerouslySetInnerHTML={parseHTML(
+                            artist.bio.content
+                            .split(' ')
+                            .splice(0,500)
+                            .join(' ')
+                            .concat(`... <a href=${artist && artist.url} target="_blank" rel="noopener noreferrer">Read more on last.fm</a>`)
+                        )}
+                    />
+                </section>}
             </div>
         </div>
     );

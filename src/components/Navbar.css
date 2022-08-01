@@ -62,8 +62,13 @@ nav > ul > li {
     background-color: var(--secondary-color);
 }
 
+.dropdown:hover,
 .dropdown:hover a {
     color: #FFFFFF;
+}
+
+.primary-nav {
+    margin: 0 0 0 10px;
 }
 
 .albums-nav,

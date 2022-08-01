@@ -1,8 +1,8 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import './AlbumDetails.css';
+import { Fragment, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getAlbum } from '../utils/crud';
 import { getMinutes, parseHTML } from '../utils/global';
-import './AlbumDetails.css';
 
 
 export const AlbumDetails = () => {

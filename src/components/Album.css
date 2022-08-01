@@ -1,7 +1,7 @@
 .album {
     display: flex;
-    flex-direction: column!important;
-    flex-wrap: wrap!important;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-content: center;
     align-items: center;
     width: 250px;

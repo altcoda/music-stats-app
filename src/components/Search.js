@@ -1,8 +1,9 @@
 import { SearchBar } from './SearchBar';
 import './Search.css';
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useContext } from 'react';
 import { SelectTag } from './Select';
 import { GlobalContext } from '../context/GlobalProvider';
+import { FaTag } from 'react-icons/fa';
 
 
 export const Search = () => {
@@ -11,7 +12,7 @@ export const Search = () => {
 
     return (
         <Fragment>
-            <h2 className="search-title">Most Popular Albums with {query.tag} tag</h2>
+            <h2 className="search-title"><FaTag />&nbsp; Most popular {query.tag} albums </h2>
             <div id="search" className="search">
                 <SelectTag />
                 <SearchBar />

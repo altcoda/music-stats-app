@@ -2,15 +2,15 @@ import React, {createContext, useReducer} from 'react';
 import { RootReducer } from './reducers/RootReducer';
 
 const genres = [
+    {  label: "pop", value: "pop" },
     {  label: "rock", value: "rock" },
     {  label: "metal", value: "metal" },
+    {  label: "punk", value: "punk" },
+    {  label: "indie", value: "indie" },
+    {  label: "blues", value: "blues" },
     {  label: "classical", value: "classical" },
-    {  label: "pop", value: "pop" },
     {  label: "synth", value: "synth" },
     {  label: "techno", value: "techno" },
-    {  label: "punk", value: "punk" },
-    {  label: "blues", value: "blues" },
-    {  label: "indie", value: "indie" },
     {  label: "anime", value: "anime" },
     {  label: "soundtrack", value: "soundtrack" }
 ]
