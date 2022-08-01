@@ -28,7 +28,7 @@ export const Navbar = () => {
           <li><Link to="/about">About</Link></li>
         </ul>
         
-        <ul id="albums-nav" className="albums-nav" aria-label="albums">
+        <ul onMouseLeave={toggleAlbumsMenu} id="albums-nav" className="albums-nav" aria-label="albums">
             <li style={{height: '70px'}} onClick={toggleAlbumsMenu}>
                 Albums
             </li>
@@ -43,7 +43,7 @@ export const Navbar = () => {
       </nav>
 
       {user && (
-        <nav id="user-nav" className="user-nav" aria-label="user">
+        <nav onMouseLeave={toggleUserMenu} id="user-nav" className="user-nav" aria-label="user">
           <ul>
             <li className="icon" onClick={toggleUserMenu}>
               <img src={user.avatar && user.avatar.url} alt="user icon" />
