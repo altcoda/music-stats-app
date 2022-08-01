@@ -14,7 +14,7 @@ export const PasswordReset = () => {
         try {
             await Parse.User.requestPasswordReset(email);
             setEmail('')
-            alert(`Success! Please check ${email} to proceed with password reset.`);
+            alert(`Success! If the email is correct you will receive a message shortly.`);
         } catch(error) {
             alert(`Error! ${error}`)
         }

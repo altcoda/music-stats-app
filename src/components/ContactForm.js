@@ -9,9 +9,11 @@ export const ContactForm = () => {
 
     return (
         <Form onSubmit={onSubmit} className={'compact-form'}>
-            <label>Email</label>
+            <label htmlFor="name">Name</label>
+            <input id="name" type="text" placeholder="email" required />
+            <label htmlFor="email">Email</label>
             <input id="email" type="email" placeholder="email" required />
-            <label>Write to us:</label>
+            <label htmlFor="message">Write to us:</label>
             <textarea id="message" type="message" placeholder="message" required />
             <button id="createButton" className="green">Contact us</button>
         </Form>

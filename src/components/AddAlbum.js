@@ -35,7 +35,7 @@ export const AddAlbum = () => {
                 id="name"
                 className="required"
                 onChange={(e) => setName(e.target.value)}
-                type="name"
+                type="text"
                 required
             />
 
@@ -44,7 +44,7 @@ export const AddAlbum = () => {
                 id="artist"
                 className="required"
                 onChange={(e) => setArtist(e.target.value)}
-                type="name"
+                type="text"
                 required
             />
             
