@@ -2,13 +2,13 @@
 
 ![app preview](https://i.ibb.co/7vnwjNR/Screenshot-2022-07-28-at-17-44-21-Music-Stats.png)
 
-<b>Anything marked with * is still being worked on.</b>
-
 This is a music app created as an assignment for SoftUni's React course.
 
-I used Back4App for the Backend and Parse SDK to retrieve and modify data. I opted out for writing the CSS by myself.
+I used Back4App for the Backend and Parse SDK to retrieve and modify data. I opted out for writing the CSS by myself. React-select is used for dropdowns.
 
 # Features
+
+<b>Anything marked with * is still being worked on.</b>
 
 - Uses the last.fm API to retrieve popular albums.
 - Search/filter albums by tag.
