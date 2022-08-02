@@ -8,14 +8,14 @@ I used Back4App for the Backend and Parse SDK to retrieve and modify data. I opt
 
 # Features
 
-<b>Anything marked with * is still being worked on.</b>
-
 - Uses the last.fm API to retrieve popular albums.
 - Search/filter albums by tag.
 - Browse through pages easily with pagination.
 - Create an account (option to request password reset).
-- Submit albums and <b>view them on a separate page as well as modify them. You can also see albums from other users.(*)</b>
+- Submit albums and view them on a separate page as well as modify them. You can also see albums from other users.
 - Users can view their profile and <b>edit it(*)</b>.
+
+<b>Anything marked with * is still being worked on.</b>
 
 # Setup
 
