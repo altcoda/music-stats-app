@@ -15,10 +15,8 @@ export const AboutPage = () => {
                         <p>After you create your account you can make lists and edit your profile.</p>
                     </li>
                     <li>
-                        <h2>Make Lists</h2>
-                    </li>
-                    <li>
-                        <p>Are you an artist? Add Your Own Albums.</p>
+                        <h2>Add your album</h2>
+                        <p>Are you an artist? Add your own albums.</p>
                     </li>
                 </ul>
             </div>

@@ -15,8 +15,9 @@ import { ProfilePage } from './pages/ProfilePage';
 import { AlbumsPage } from './pages/AlbumsPage';
 import { AlbumDetails } from './components/AlbumDetails';
 import { Artist } from './components/Artist';
-import { AlbumsAdd } from './pages/AlbumsAdd';
 import { UserAlbums } from './components/UserAlbums';
+import { AddAlbumPage } from './pages/AddAlbumPage';
+import { EditAlbumPage } from './pages/EditAlbumPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -33,10 +34,10 @@ root.render(
               <Route path='/login' element={<LoginPage />} />
               <Route path='/reset-password' element={<PasswordReset />} />
               <Route path='/albums' element={<AlbumsPage />} />
-              <Route path='/albums/add' element={<AlbumsAdd />} />
+              <Route path='/albums/add' element={<AddAlbumPage />} />
+              <Route path={`/albums/user/edit/:id`} element={<EditAlbumPage />} />
               <Route path='/albums/:mbid' element={<AlbumDetails />} />
               <Route path='/albums/user' element={<UserAlbums />} />
-              <Route path='/albums/user/edit/:id' element={<UserAlbums />} />
               <Route path='/artist/:name' element={<Artist />} />
               <Route path='/profile/:id' element={<ProfilePage />} />
               <Route path='*' element={<ErrorPage />} />

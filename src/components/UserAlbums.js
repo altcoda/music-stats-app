@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react"
-import { Link } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalProvider";
-import { getUserAlbums } from "../utils/crud";
-import { UserAlbum } from "./UserAlbum";
+import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalProvider';
+import { getUserAlbums } from '../utils/crud';
+import { UserAlbum } from './UserAlbum';
 
 
 export const UserAlbums = () => {

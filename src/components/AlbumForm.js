@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addAlbum } from '../utils/crud';
+import { addAlbum, editAlbum } from '../utils/crud';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
 
-export const AddAlbum = () => {
+export const AlbumForm = ({albumId, actionType}) => {
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');
     const [tags, setTags] = useState([]);
@@ -13,53 +13,43 @@ export const AddAlbum = () => {
     const [date, setDate] = useState(null);
     const [cover, setCover] = useState(null);
     const navigate = useNavigate();
-     
-    const convertBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-          const fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
-     
-          fileReader.onload = () => {
-            resolve(fileReader.result);
-          };
-     
-          fileReader.onerror = (error) => {
-            reject(error);
-          };
-        });
-    };
+
+    const actions = {
+        add: () => {
+            try {
+                addAlbum({ name, artist, description, tags, release_date: new Date(date), cover });
+            } catch(err) {
+                console.log(err)
+                return
+            }
+    
+            navigate('/albums/user/')
+        },
+        edit: () => {
+            try {
+                editAlbum(albumId, { name, artist, description, tags, release_date: new Date(date), cover });
+            } catch(err) {
+                console.log(err)
+                return
+            }
+    
+            navigate('/albums/user/')
+        }
+    }
 
     const uploadImage = async(e) => {
-        const file = e.target.files[0];
-        const base64 = await convertBase64(file);
-        console.log(base64)
-        setCover(base64);
+        //const file = e.target.files[0];
+        setCover(e.target.value);
     }
-    
-    const onAddAlbum = () => {
-        try {
-            addAlbum({ name, artist, description, tags, release_date: date, cover });
-        } catch(err) {
-            console.log(err)
-            return
-        }
 
-        navigate('/albums/user/')
-    };
 
     return (
-        <Form
-            id="add-album-form"
-            style={{
-                width: '400px'
-            }}
-            className="form"
-            onSubmit={onAddAlbum}
-        >
+        <Form id={`${actions[actionType]}-album-form`} style={{ width: '400px' }} className="form" onSubmit={actions[actionType]}>
             <label htmlFor="name" className="required">Album Name</label>
             <input
                 id="name"
                 className="required"
+                placeholder="name"
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 required
@@ -69,6 +59,7 @@ export const AddAlbum = () => {
             <input
                 id="artist"
                 className="required"
+                placeholder="artist"
                 onChange={(e) => setArtist(e.target.value)}
                 type="text"
                 required
@@ -78,6 +69,7 @@ export const AddAlbum = () => {
             <textarea
                 style={{minHeight: 0}}
                 id="description"
+                placeholder="Please, provide a short summary of the album."
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
             />
@@ -85,6 +77,7 @@ export const AddAlbum = () => {
             <label htmlFor="release_date">Release Date</label>
             <input
                 id="release_date"
+                placeholder="release date"
                 onChange={(e) => setDate(e.target.value)}
                 type="date"
             />
@@ -94,15 +87,16 @@ export const AddAlbum = () => {
             <label htmlFor="cover" className="required">Album Cover</label>
             <input
                 id="cover"
+                placeholder="image url"
                 className="required"
                 onChange={uploadImage}
-                type="file"
+                type="text"
                 required
             />
 
             <button type="submit" id="add-album-button" className="green">
-                Add Album
+                {actionType} album
             </button>
         </Form>
-    );
-};
+    )
+}

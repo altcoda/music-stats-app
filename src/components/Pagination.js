@@ -6,7 +6,6 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 export const Pagination = () => {
     const {query, setQuery} = useContext(GlobalContext);
-    const prevNextSize = new Array(4).map((n, i) => i + 1);
 
     const onPrevPage = () => {
         if(query && query.page > 1) {
@@ -22,15 +21,12 @@ export const Pagination = () => {
         setQuery({...query, page:  Number(query.page) + 1})
     }
 
-    return(
+    return (
         <nav id="pagination-nav" class="pagination">
             <ul id="pagination" className="row">
-                <li onClick={onPrevPage} id="prev-page" className="box"><FaAngleLeft /></li>
-                {prevNextSize.map(num => {
-                    return(<li onClick={onPageChange} className="box">{(query.page - num > 1) && query.page - num}</li>)
-                })}
+                {query.page > 1 && <li onClick={onPrevPage} id="prev-page" className="box"><FaAngleLeft /></li>}
                 <label htmlFor="page-input" className="hidden">Page:</label>
-                <input onChange={onPageChange} id="page-input" value={query.page} className="box"/>
+                <input type="number" onChange={onPageChange} id="page-input" value={query.page} className="box"/>
                 <li onClick={onNextPage} id="next-page"  className="box"><FaAngleRight /></li>
             </ul>
         </nav>

@@ -18,7 +18,7 @@ const genres = [
 const initialState = {
     user: null,
     siteName: 'Music Stats',
-    query: {page: 1, tag: 'rock', search: ''},
+    query: {page: 1, pages: 0, tag: 'rock', search: ''},
     albumsList: [],
     userAlbums: [],
     tagOptions: genres

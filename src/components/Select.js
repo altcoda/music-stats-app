@@ -1,6 +1,6 @@
+import Select from 'react-select';
 import { Fragment, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
-import Select from 'react-select';
 
 
 export const SelectTags = ({setTags}) => {

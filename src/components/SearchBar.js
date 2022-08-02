@@ -1,6 +1,6 @@
+import './SearchBar.css';
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
-import './SearchBar.css';
 import { FaSearch } from 'react-icons/fa';
 
 

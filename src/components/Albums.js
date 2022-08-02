@@ -1,8 +1,8 @@
+import './Albums.css';
 import { Fragment, useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 import { PropTypes } from 'prop-types';
 import { Album } from './Album';
-import './Albums.css';
 import { getAlbums } from '../utils/crud';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
@@ -11,12 +11,14 @@ import { Pagination } from './Pagination';
 export const Albums = ({className, limit}) => {
 
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
-    const {query} = useContext(GlobalContext);
+    const {query, setQuery} = useContext(GlobalContext);
 
     useEffect(() => {
         const initAlbums = async () => {
-            const albums = await getAlbums(query);
-            setAlbumsList(albums);
+            //const {albums, pages} = await getAlbums(query);
+            //console.log(albums)
+            //setAlbumsList(albums);
+            //setQuery({...query, pages: pages})
         }
 
         initAlbums();

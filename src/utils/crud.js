@@ -9,11 +9,9 @@ const API_PATH = {
 }
 
 
-export const getHeaders = (options) => {
+const getHeaders = (options) => {
     return {
-        "X-Parse-Application-Id": process.env.REACT_APP_APP_ID,
-        'X-Parse-REST-API-Key': process.env.REACT_APP_REST_API_KEY,
-        "Content-Type": "application/json",
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
         "crossDomain": true,
         ...options
     }
@@ -34,7 +32,12 @@ export const getAlbums = async(query) => {
     const url = API_PATH.ALBUMS + `&tag=${query.tag}&page=${query.page}`;
 
     const res = getResponse({url, query})
-    .then(data => data.albums.album)
+    .then(data => {
+        console.log(data)
+        const pages = data.albums['@attr'].totalPages;
+        const albums = data.albums.album;
+        return {albums, pages}
+    })
     .catch((err) => console.log(err))
 
     return res
@@ -69,20 +72,22 @@ export const addAlbum = async({ name, artist, description, tags, release_date, c
     }
 }
 
-// TODO
-export const editAlbum = async(id, data) => {
-    const Album = Parse.Object.extend("Album");
-    const album = new Album();
+
+export const editAlbum = async(id, { name, artist, description, tags, release_date, cover }) => {
+    const album = await new Parse.Query('Album');
     
-    const res = album.get(id)
+    album.get(id)
         .then((album) => {
-        // album.set('name', 'Midnight')
-        // album.save();
+            album.set('name', name);
+            album.set('artist', artist);
+            album.set('description', description);
+            album.set('tags', tags);
+            album.set('release_date', release_date);
+            album.set('cover', cover);
+            album.save();
         }, (err) => {
             alert('Failed to update. Error:' + err.message)
         });
-    
-    return res;
 }
 
 

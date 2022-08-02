@@ -18,6 +18,7 @@
 }
 
 .pagination input {
+    -moz-appearance: textfield;
     margin: 0;
 }
 
