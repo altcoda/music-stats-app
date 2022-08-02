@@ -73,7 +73,7 @@ export const HomePage = () => {
                 <Albums limit="12" className="albums"/>
             </Header>
 
-            <Header id="info-header" className="info-header" bgd="linear-gradient(rgba(0, 0, 0, 0), rgba(171, 113, 255, 0.2)), url(/img/UI/music-room-1.jpg)">
+            <Header id="info-header" className="info-header sharpen" bgd="linear-gradient(rgba(0, 4, 255, 0.3), rgba(92, 0, 255, 0.3)), url(/img/UI/vinyl-1.jpg)">
             
             </Header>
         </Fragment>

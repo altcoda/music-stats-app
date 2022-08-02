@@ -20,6 +20,7 @@ const initialState = {
     siteName: 'Music Stats',
     query: {page: 1, tag: 'rock', search: ''},
     albumsList: [],
+    userAlbums: [],
     tagOptions: genres
 }
 
@@ -41,13 +42,18 @@ export const GlobalProvider = ({children}) => {
         dispatch({type:'SET_ALBUMS_LIST', payload: albums})
     }
 
+    const setUserAlbums = (albums) => {
+        dispatch({type:'SET_USER_ALBUMS', payload: albums})
+    }
+
     return (
     <GlobalContext.Provider
         value={{
             ...state,
             setUser,
             setQuery,
-            setAlbumsList
+            setAlbumsList,
+            setUserAlbums
         }}
     >
         {children}

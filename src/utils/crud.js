@@ -9,14 +9,26 @@ const API_PATH = {
 }
 
 
-export const getResponse = async({url, query}) => {
+export const getHeaders = (options) => {
+    return {
+        "X-Parse-Application-Id": process.env.REACT_APP_APP_ID,
+        'X-Parse-REST-API-Key': process.env.REACT_APP_REST_API_KEY,
+        "Content-Type": "application/json",
+        "crossDomain": true,
+        ...options
+    }
+}
+
+export const getResponse = async({url, query}, headers) => {
     return await axios.get(
-        [ process.env.REACT_APP_LAST_FM_API_URL, url, query ].join(''), 
-        { crossDomain: true }
+        [ process.env.REACT_APP_LAST_FM_API_URL, url, query ].join(''),
+        getHeaders()
     )
     .then(res => res.data)
 }
 
+
+export const getArtist = async(artistName) => getResponse({url: API_PATH.ARTIST + `&artist=${artistName}`})
 
 export const getAlbums = async(query) => {
     const url = API_PATH.ALBUMS + `&tag=${query.tag}&page=${query.page}`;
@@ -38,11 +50,8 @@ export const getAlbum = async(id) => {
 }
 
 
-export const getArtist = async(artistName) => getResponse({url: API_PATH.ARTIST + `&artist=${artistName}`})
-
-
-export const addAlbum = async(data) => {
-    const { name, artist, description, tags, release_date, cover } = data;
+export const addAlbum = async({ name, artist, description, tags, release_date, cover }) => {
+    
     const album = new Parse.Object('Album');
 
     album.set('name', name);
@@ -76,10 +85,9 @@ export const editAlbum = async(id, data) => {
     return res;
 }
 
-// TODO
+
 export const deleteAlbum = async(id) => {
-    const Album = Parse.Object.extend("Album");
-    const album = new Parse.Query(Album);
+    const album = await new Parse.Query('Album');
 
     album.get(id)
     .then((obj) => {
@@ -95,35 +103,25 @@ export const deleteAlbum = async(id) => {
     });;
 }
 
-// TODO
-export const getUniqueAlbums = async() => {
-    const Album = Parse.Object.extend("Album");
-    const albums = new Parse.Query(Album);
 
-}
+export const getUserAlbums = async() => {
+    const album = await new Parse.Query('Album');
+    const count = await album.count();
 
-// TODO
-export const getUser = async(id) => {
-    const User = Parse.Object.extend("User");
-    const user = new User();
-    console.log(user)
-    return user.get(id);
-}
+    const albums = await album.map(album => {
+        const name = album.get('name') !== undefined ? album.get('name') : null;
+        const artist = album.get('artist') !== undefined ? album.get('artist') : null;
+        const cover = album.get('cover') !== undefined ? album.get('cover') : null;
+        const description = album.get('description') !== undefined ? album.get('description') : null;
+        
+        return {
+            id: album.id,
+            name,
+            artist,
+            cover,
+            description
+        };
+    })
 
-// TODO
-export const editUser = async(id, data) => {
-    const User = Parse.Object.extend("User");
-    const user = new User();
-    
-    const res = user.get(id)
-        .then((user) => {
-            if(data.avatar) {
-                user.set('avatar[url]', data.avatar)
-            }
-            user.save()
-        }, (err) => {
-            alert('Failed to update. Error:' + err.message)
-        });
-    
-    return res;
+    return { albums: Array.from(albums), count }
 }

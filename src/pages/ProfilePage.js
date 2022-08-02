@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Header } from '../components/Header';
-import { editUser, getUser } from '../utils/crud';
 import { getAge } from '../utils/global';
+import { editUser, getUser } from '../utils/users';
 import './ProfilePage.css';
 
 
@@ -16,25 +16,24 @@ export const ProfilePage = (props) => {
     useEffect(() => {
         const initUser = async () => {
             const userData = await getUser(id);
-            console.log('userdata', userData)
             setUser(userData)
-            console.log('user', user)
-            setAge((user && user.birthdate) && getAge(user.birthdate.iso))
+            if(user && user.birthdate) {
+                setAge(getAge(user.birthdate.iso))
+            }
         }
         initUser()
     },[])
 
     const handleClick = (e) => {
-        const avatar = user && user.avatar;
-        editUser({avatar})
+        editUser({icon: user.icon})
     }
 
     return (
         <Fragment>
         {user &&
             <div className="flex-column profile">
-                <Header id="profile-header" bgd={user.headerImage && `url('${user.headerImage.url}')`}>
-                    {user.avatar && <img onClick={handleClick} src={user.avatar.url} alt="" className="icon" />}
+                <Header id="profile-header" bgd={user.coverImage && `url('${user.coverImage}')`}>
+                    {user.icon && <img onClick={handleClick} src={user.icon} alt="" className="icon" />}
                 </Header>
                 <div className="description">
                     <b className="username">{user.username}</b>

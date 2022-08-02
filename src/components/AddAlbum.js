@@ -10,22 +10,41 @@ export const AddAlbum = () => {
     const [artist, setArtist] = useState('');
     const [tags, setTags] = useState([]);
     const [description, setDescription] = useState('');
-    const [date, setDate] = useState(undefined);
-    const [cover, setCover] = useState(undefined);
+    const [date, setDate] = useState(null);
+    const [cover, setCover] = useState(null);
     const navigate = useNavigate();
+     
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+     
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+     
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        });
+    };
 
-    const onAddAlbum = (e) => {
-        // adding cover and date doesn't work
-        // console.log(release_date, cover)
-   
+    const uploadImage = async(e) => {
+        const file = e.target.files[0];
+        const base64 = await convertBase64(file);
+        console.log(base64)
+        setCover(base64);
+    }
+    
+    const onAddAlbum = () => {
         try {
             addAlbum({ name, artist, description, tags, release_date: date, cover });
         } catch(err) {
             console.log(err)
             return
         }
-        
-        navigate('/')
+
+        navigate('/albums/user/')
     };
 
     return (
@@ -76,7 +95,7 @@ export const AddAlbum = () => {
             <input
                 id="cover"
                 className="required"
-                onChange={(e) => setCover(e.target.files[0])}
+                onChange={uploadImage}
                 type="file"
                 required
             />

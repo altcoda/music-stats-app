@@ -1,6 +1,5 @@
 import './Navbar.css';
-import { useContext } from 'react';
-import { FaRegPlusSquare } from 'react-icons/fa';
+import { Fragment, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalProvider';
 import { logoutUser } from '../utils/users';
@@ -30,25 +29,32 @@ export const Navbar = () => {
         </ul>
         
         <ul onMouseLeave={toggleAlbumsMenu} id="albums-nav" className="albums-nav" aria-label="albums">
-            <li style={{height: '70px'}} onClick={toggleAlbumsMenu}>
+            <li onMouseEnter={toggleAlbumsMenu} style={{height: '70px'}} onClick={toggleAlbumsMenu}>
                 Albums
             </li>
             <li className="dropdown hidden">
-                <Link to="/albums">Albums</Link>
+                <Link to="/albums">All Albums</Link>
             </li>
             {user &&
+            <Fragment>
+            <li className="dropdown hidden">
+                <Link to="/albums/user">
+                  User Albums
+                </Link>
+            </li>
             <li className="dropdown hidden">
                 <Link to="/albums/add">
-                  <FaRegPlusSquare /> Add Album
+                  Add Album
                 </Link>
-            </li>}
+            </li>
+            </Fragment>}
         </ul>
       </nav>
 
       {user && (
         <nav onMouseLeave={toggleUserMenu} id="user-nav" className="user-nav" aria-label="user">
           <ul>
-            <li className="icon" onClick={toggleUserMenu}>
+            <li onMouseEnter={toggleUserMenu} className="icon" onClick={toggleUserMenu}>
               <img src={user.avatar && user.avatar.url} alt="user icon" />
             </li>
             <li className="dropdown hidden">

@@ -24,7 +24,7 @@ export const SearchBar = () => {
                 placeholder="Search by album/artist name"
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button type="submit" id="search-button" className="search-button standart">Search <FaSearch /></button>
+            <button type="submit" id="search-button" className="search-button standart"><FaSearch /></button>
         </form>
     );
 }

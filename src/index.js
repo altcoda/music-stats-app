@@ -35,7 +35,8 @@ root.render(
               <Route path='/albums' element={<AlbumsPage />} />
               <Route path='/albums/add' element={<AlbumsAdd />} />
               <Route path='/albums/:mbid' element={<AlbumDetails />} />
-              <Route path='/albums/unique' element={<UserAlbums />} />
+              <Route path='/albums/user' element={<UserAlbums />} />
+              <Route path='/albums/user/edit/:id' element={<UserAlbums />} />
               <Route path='/artist/:name' element={<Artist />} />
               <Route path='/profile/:id' element={<ProfilePage />} />
               <Route path='*' element={<ErrorPage />} />

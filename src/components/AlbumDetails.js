@@ -54,8 +54,14 @@ export const AlbumDetails = () => {
                             {album.tags.tag.map(tag => <li key={tag.name} class="tag">{tag.name}</li>)}
                         </ul>
                     </section>}
-                    {(album.wiki && album.wiki.summary) && <section id="summary" className="summary">
+                    {(album.wiki && album.wiki.summary) &&
+                    <section id="summary" className="summary">
                         <p dangerouslySetInnerHTML={parseHTML(album.wiki.summary, [' <a href=','... <a href='])} />
+                    </section>}
+                    {console.log(album.wiki)}
+                    {(album.wiki && album.wiki.bio) &&
+                    <section id="summary" className="summary">
+                        <p dangerouslySetInnerHTML={parseHTML(album.wiki.bio, [' <a href=','... <a href='])} />
                     </section>}
                 </div>
             </Fragment>}           

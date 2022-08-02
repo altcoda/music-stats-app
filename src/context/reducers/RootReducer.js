@@ -15,6 +15,11 @@ export const RootReducer = (state, action) => {
                 ...state,
                 albumsList: action.payload
             }
+        case "SET_USER_ALBUMS":
+            return {
+                ...state,
+                userAlbums: action.payload
+            }
         case "SET_MOUSE":
             return {
                 ...state,

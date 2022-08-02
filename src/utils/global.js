@@ -2,6 +2,7 @@ import moment from 'moment';
 
 
 export const getMinutes = (seconds) => moment().startOf('day').add((seconds / 60), 'minutes').format('m:ss');
+export const getYear = () => moment().year();
 
 export const getDate = (date) => {
     const UTC = moment(date).utc();
