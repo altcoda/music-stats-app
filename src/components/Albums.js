@@ -1,5 +1,5 @@
 import './Albums.css';
-import { Fragment, useContext, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 import { PropTypes } from 'prop-types';
 import { Album } from './Album';
@@ -13,13 +13,14 @@ export const Albums = ({className, limit}) => {
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
     const {query, setQuery} = useContext(GlobalContext);
     const [pages, setPages] = useState(0);
+    const [defaultLimit, setDefaultLimit] = useState(0);
     const [initialised, setInitialised] = useState(false);
 
-
     const initAlbums = async () => {
-        const {albums, pageCount} = await getAlbums(query);
+        const {albums, pageCount, limit} = await getAlbums(query);
         setAlbumsList(albums)
         setPages(pageCount)
+        setDefaultLimit(limit)
     }
 
     // request again on query change (avoid infinite loop)
@@ -30,7 +31,7 @@ export const Albums = ({className, limit}) => {
 
     // initial request
     useEffect(() => {
-        initAlbums();
+        initAlbums()
         setInitialised(true)
     },[])
 
@@ -38,8 +39,7 @@ export const Albums = ({className, limit}) => {
         <Fragment>
             <Search />
             <ul className={className && className}>
-            {albumsList && albumsList
-                .filter(album => Boolean(album.mbid))
+            {albumsList && albumsList.filter(album => Boolean(album.mbid))
                 .filter(album =>
                     query.search ?
                     (
@@ -50,8 +50,9 @@ export const Albums = ({className, limit}) => {
                     )
                     : album
                 )
-                .slice(0,  limit ? limit : albumsList.length - 3)
-                .map((album, i) => <li key={i}><Album album={album} /></li>)}
+                .slice(0, limit ? Number(limit) : defaultLimit)
+                .map((album, i) => <li key={i}><Album album={album} /></li>)
+            }
             </ul>
             <Pagination pages={pages} />
         </Fragment>
@@ -60,5 +61,9 @@ export const Albums = ({className, limit}) => {
 
 
 Albums.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    limit: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ])
 };

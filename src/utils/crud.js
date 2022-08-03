@@ -28,19 +28,21 @@ export const getResponse = async({url, query}, headers) => {
 
 export const getArtist = async(artistName) => getResponse({url: API_PATH.ARTIST + `&artist=${artistName}`})
 
+
 export const getAlbums = async(query) => {
     const url = API_PATH.ALBUMS + `&tag=${query.tag}&page=${query.page}`;
 
     const res = getResponse({url, query})
     .then(data => {
-        const pageCount = data.albums['@attr'].totalPages;
         const albums = data.albums.album;
-        return {albums, pageCount}
+        const {totalPages, perPage} = data.albums['@attr'];
+        return {albums, pages: totalPages, limit: perPage}
     })
     .catch((err) => console.log(err))
 
     return res
 }
+
 
 export const getAlbum = async(id) => {
     const res = getResponse({url: API_PATH.ALBUM + `&mbid=${id}`})
@@ -50,17 +52,15 @@ export const getAlbum = async(id) => {
     return res
 }
 
+const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description'];
 
-export const addAlbum = async({ name, artist, description, tags, release_date, cover }) => {
+export const addAlbum = async(data) => {
     
     const album = new Parse.Object('Album');
 
-    album.set('name', name);
-    album.set('artist', artist);
-    album.set('description', description);
-    album.set('tags', tags);
-    album.set('release_date', release_date);
-    album.set('cover', cover);
+    albumProps.forEach((prop) => {
+        album.set(`${prop}`, data[prop])  
+    })
 
     try {
         const result = await album.save();
@@ -71,17 +71,14 @@ export const addAlbum = async({ name, artist, description, tags, release_date, c
 }
 
 
-export const editAlbum = async(id, { name, artist, description, tags, release_date, cover }) => {
+export const editAlbum = async(id, data) => {
     const album = await new Parse.Query('Album');
 
     album.get(id)
     .then((album) => {
-        album.set('name', name);
-        album.set('artist', artist);
-        album.set('description', description);
-        album.set('tags', tags);
-        album.set('release_date', release_date);
-        album.set('cover', cover);
+        albumProps.forEach((prop) => {
+            album.set(`${prop}`, data[prop])  
+        })
         album.save();
     }, (err) => {
         alert('Failed to update. Error:' + err.message)
@@ -105,28 +102,18 @@ export const deleteAlbum = async(id) => {
     });;
 }
 
-
 export const getUserAlbum = async(id) => {
     const Album = await new Parse.Query('Album');
 
     const album = Album.get(id)
     .then((album) => {
-        const name = album.get('name') !== undefined ? album.get('name') : null;
-        const artist = album.get('artist') !== undefined ? album.get('artist') : null;
-        const cover = album.get('cover') !== undefined ? album.get('cover') : null;
-        const release_date = album.get('release_date') !== undefined ? album.get('release_date') : null;
-        const tags = album.get('tags') !== undefined ? album.get('tags') : null;
-        const description = album.get('description') !== undefined ? album.get('description') : null;
-        
-        return {
-            id: album.id,
-            name,
-            artist,
-            cover,
-            release_date,
-            tags,
-            description
-        };
+        const data = {};
+
+        albumProps.forEach((prop) => {
+            data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;
+        })
+
+        return {...data, id: album.id}
     }, (err) => {
         console.log(err.message)
     });
@@ -140,23 +127,14 @@ export const getUserAlbums = async() => {
     const count = await album.count();
 
     const albums = await album.map(album => {
-        const name = album.get('name') !== undefined ? album.get('name') : null;
-        const artist = album.get('artist') !== undefined ? album.get('artist') : null;
-        const cover = album.get('cover') !== undefined ? album.get('cover') : null;
-        const release_date = album.get('release_date') !== undefined ? album.get('release_date') : null;
-        const tags = album.get('tags') !== undefined ? album.get('tags') : null;
-        const description = album.get('description') !== undefined ? album.get('description') : null;
-        
-        return {
-            id: album.id,
-            name,
-            artist,
-            cover,
-            release_date,
-            tags,
-            description
-        };
+        const data = {};
+
+        albumProps.forEach((prop) => {
+            data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;  
+        })
+
+        return {...data, id: album.id}
     })
 
-    return { albums: Array.from(albums), count }
+    return { albums, count }
 }

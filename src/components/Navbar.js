@@ -43,7 +43,7 @@ export const Navbar = () => {
                 </Link>
             </li>
             <li className="dropdown hidden">
-                <Link to="/albums/add">
+                <Link to="/useralbums/add">
                   Add Album
                 </Link>
             </li>

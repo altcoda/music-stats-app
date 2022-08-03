@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addAlbum } from '../utils/crud';
+import { parseInputDate } from '../utils/global';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
@@ -19,7 +20,7 @@ export const AddAlbum = () => {
         e.preventDefault();
 
         try {
-            addAlbum({ name, artist, description, tags, release_date: new Date(date), cover });
+            addAlbum({ name, artist, description, tags, release_date: parseInputDate(date), cover });
         } catch(err) {
             console.log(err)
             return

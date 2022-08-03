@@ -1,4 +1,4 @@
-import './UserAlbum.css';
+import './UserAlbums.css';
 import './Album.css';
 import { FaEdit, FaRegHeart, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -6,24 +6,25 @@ import { deleteAlbum } from '../utils/crud';
 import { getYear } from '../utils/global';
 
 
-export const UserAlbum = ({album}) => {
+export const UserAlbum = ({album, setAlbumCount}) => {
 
     // TODO: only show edit/delete to author
     const onDelete = () => {
         if (window.confirm('Are you sure you want to delete this album?')) {
             deleteAlbum(album.id)
+            setAlbumCount(prevCount => prevCount - 1)
         }
     }
 
-    const onLike = () => {
-        //likeAlbum(album.id)
-    }
+    // TODO: implement like button
+    // const onLike = () => {
+    //     //likeAlbum(album.id)
+    // }
 
     return (
         <div id={album.id} className="flex-column album user-album">
             <img src={album.cover ? album.cover : null} alt={`${album.name} cover`} />
-            <h2>{album.name && album.name}</h2>
-            <h3>{album.artist && album.artist}</h3>
+            <h2>{album.name && album.name} by {album.artist && album.artist}</h2>
             <h3>{album.release_date && getYear(album.release_date)}</h3>
             <p>{album.description && album.description}</p>
             <div className="row more-info">

@@ -2,6 +2,10 @@
     font-size: 14px;
 }
 
+.user-album h2 {
+    color: grey;
+}
+
 .user-album .controls {
     margin: 10px 0 0 0;
 }
@@ -9,4 +13,14 @@
 .user-album .more-info {
     display: flex;
     align-items: center;
+}
+
+.add {
+    font-size: 35px;
+}
+
+.add svg {
+	font-size: 60px;
+	margin: 20px;
+	color: var(--green);
 }

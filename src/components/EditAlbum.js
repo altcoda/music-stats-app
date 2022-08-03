@@ -1,18 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { editAlbum } from '../utils/crud';
+import { parseInputDate } from '../utils/global';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
 
-export const EditAlbum = ({album, setAlbum}) => {
+export const EditAlbum = ({album}) => {
 
-    const [tags, setTags] = useState(album.tags);
+    const [name, setName] = useState('');
+    const [artist, setArtist] = useState('');
+    const [cover, setCover] = useState('');
+    const [tags, setTags] = useState([]);
+    const [description, setDescription] = useState('');
+    const [date, setDate] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {  
+        setName(album.name)
+        setArtist(album.artist)
+        setCover(album.cover)
+        setTags(album.tags)
+        setDescription(album.description)
+        setDate(album.release_date)
+    },[album])
 
     const onEdit = () => {
         try {
-            editAlbum(album.id, {...album, release_date: new Date(album.date), tags: tags});
+            editAlbum(album.id, {name, artist, cover, tags: tags, description, date: parseInputDate(date)});
         } catch(err) {
             console.log(err)
         }
@@ -20,21 +35,16 @@ export const EditAlbum = ({album, setAlbum}) => {
         navigate('/useralbums')
     }
 
-    const uploadImage = async(e) => {
-        //const file = e.target.files[0];
-        setAlbum({...album, cover: e.target.value});
-    }
-
     return (
-        <Form id={'edit-album-form'} style={{ width: '400px' }} className="form" onSubmit={onEdit}>
+        <Form id="edit-album-form" style={{ width: '400px' }} className="form" onSubmit={onEdit}>
             <label htmlFor="name" className="required">Album Name</label>
             <input
                 type="text"
                 id="name"
                 className="required"
                 placeholder="name"
-                value={album.name}
-                onChange={(e) => setAlbum({...album, name: e.target.value})}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required
             />
 
@@ -44,8 +54,8 @@ export const EditAlbum = ({album, setAlbum}) => {
                 id="artist"
                 className="required"
                 placeholder="artist"
-                value={album.artist}
-                onChange={(e) => setAlbum({...album, artist: e.target.value})}
+                value={artist}
+                onChange={(e) => setArtist(e.target.value)}
                 required
             />
             
@@ -54,16 +64,16 @@ export const EditAlbum = ({album, setAlbum}) => {
                 style={{minHeight: 0}}
                 id="description"
                 placeholder="Please, provide a short summary of the album."
-                value={album.description}
-                onChange={(e) => setAlbum({...album, description: e.target.value})}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
             />
 
             <label htmlFor="release_date">Release Date</label>
             <input
                 type="date"
                 id="release_date"
-                value={album.release_date}
-                onChange={(e) => setAlbum({...album, release_date: e.target.value})}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
             />
             <SelectTags defaultTags={tags} setTags={setTags} />
 
@@ -73,8 +83,8 @@ export const EditAlbum = ({album, setAlbum}) => {
                 id="cover"
                 placeholder="image url"
                 className="required"
-                value={album.cover}
-                onChange={uploadImage}
+                value={cover}
+                onChange={(e) => setCover(e.target.value)}
                 required
             />
 

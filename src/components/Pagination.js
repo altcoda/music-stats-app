@@ -22,11 +22,10 @@ export const Pagination = ({pages}) => {
     return (
         <nav id="pagination-nav" className="pagination">
             <ul id="pagination" className="row">
-                {console.log('pages',pages)}
                 {(query && query.page > 1) && <li onClick={onPrevPage} id="prev-page" className="box"><FaAngleLeft /></li>}
                 <label htmlFor="page-input" className="hidden">Page:</label>
                 <input type="number" onChange={onPageChange} id="page-input" value={query.page} className="box"/>
-                {(query && (query.page < pages)) && <li onClick={onNextPage} id="next-page"  className="box"><FaAngleRight /></li>}
+                {(query && query.page !== pages) && <li onClick={onNextPage} id="next-page" className="box"><FaAngleRight /></li>}
             </ul>
         </nav>
     )

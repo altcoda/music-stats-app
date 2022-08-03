@@ -15,19 +15,17 @@ export const RegisterPage = (props) => {
     e.preventDefault();
 
     const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
 
-    if(username.length < 6) {
-        alert('Username must be at least 6 characters long.');
+    if(username.length < 4) {
+        alert('Username must be at least 4 characters long.');
         return;
     }
 
     let newUser = new Parse.User();
 
     newUser.set('username', username);
-    newUser.set('email', email);
-    newUser.set('password', password);
+    newUser.set('email', document.getElementById('email').value);
+    newUser.set('password', document.getElementById('password').value);
 
     try {
       newUser = await newUser.save();

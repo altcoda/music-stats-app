@@ -2,7 +2,8 @@ import moment from 'moment';
 
 
 export const getMinutes = (seconds) => moment().startOf('day').add((seconds / 60), 'minutes').format('m:ss');
-export const getYear = () => moment().year();
+
+export const getYear = (date) => moment(date).year();
 
 export const getDate = (date) => {
     const UTC = moment(date).utc();
@@ -12,6 +13,8 @@ export const getDate = (date) => {
 }
 
 export const getAge = (date) => moment().diff(getDate(date).YMD, 'years');
+
+export const parseInputDate = (str) => moment(str, 'YYYY-MM-DD').toDate();
 
 export const parseHTML = (HTML, replaceValues) => {
     return (

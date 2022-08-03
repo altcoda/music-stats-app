@@ -35,9 +35,9 @@ root.render(
               <Route path='/reset-password' element={<PasswordReset />} />
               <Route path='/profile/:id' element={<ProfilePage />} />
               <Route path='/albums' element={<AlbumsPage />} />
-              <Route path='/albums/add' element={<AddAlbumPage />} />
               <Route path='/albums/:mbid' element={<AlbumDetails />} />
               <Route path='/useralbums' element={<UserAlbums />} />
+              <Route path='/useralbums/add' element={<AddAlbumPage />} />
               <Route path='/useralbums/edit/:id' element={<EditAlbumPage />} />
               <Route path='/artist/:name' element={<Artist />} />
               <Route path='*' element={<ErrorPage />} />

@@ -19,7 +19,7 @@ export const EditAlbumPage = () => {
     },[])
 
     return(
-        <div id="edit-album" className="edit-album container page">
+        <div id="edit-album" className="edit-album container page-center">
             <EditAlbum album={album} setAlbum={setAlbum} />
         </div>
     )
