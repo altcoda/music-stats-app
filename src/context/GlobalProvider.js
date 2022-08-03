@@ -8,6 +8,7 @@ const genres = [
     {  label: "punk", value: "punk" },
     {  label: "indie", value: "indie" },
     {  label: "blues", value: "blues" },
+    {  label: "jazz", value: "jazz" },
     {  label: "classical", value: "classical" },
     {  label: "synth", value: "synth" },
     {  label: "techno", value: "techno" },
@@ -18,10 +19,10 @@ const genres = [
 const initialState = {
     user: null,
     siteName: 'Music Stats',
-    query: {page: 1, pages: 0, tag: 'rock', search: ''},
+    query: {page: 1, tag: 'rock', search: ''},
     albumsList: [],
     userAlbums: [],
-    tagOptions: genres
+    tagOptions: genres.sort((a,b) => a - b)
 }
 
 export const GlobalContext = createContext(initialState);

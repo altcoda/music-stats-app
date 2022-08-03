@@ -1,12 +1,13 @@
+import './ProfilePage.css';
+import { FaUserEdit } from 'react-icons/fa';
 import { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { getAge } from '../utils/global';
 import { editUser, getUser } from '../utils/users';
-import './ProfilePage.css';
 
 
-export const ProfilePage = (props) => {
+export const ProfilePage = () => {
 
     const {pathname} = useLocation();
     const id = pathname.split('/').pop();
@@ -24,7 +25,8 @@ export const ProfilePage = (props) => {
         initUser()
     },[])
 
-    const handleClick = (e) => {
+    // TODO: finish this
+    const handleClick = () => {
         editUser({icon: user.icon})
     }
 
@@ -36,7 +38,7 @@ export const ProfilePage = (props) => {
                     {user.icon && <img onClick={handleClick} src={user.icon} alt="" className="icon" />}
                 </Header>
                 <div className="description">
-                    <b className="username">{user.username}</b>
+                    <b className="username">{user.username} <FaUserEdit /></b>
                     {user.description !== '' ? user.description : 'No description has been set.'}
                     
                     {age && <p><b>age:</b> {age}</p>}

@@ -33,13 +33,13 @@ root.render(
               <Route path='/register' element={<RegisterPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/reset-password' element={<PasswordReset />} />
+              <Route path='/profile/:id' element={<ProfilePage />} />
               <Route path='/albums' element={<AlbumsPage />} />
               <Route path='/albums/add' element={<AddAlbumPage />} />
-              <Route path={`/albums/user/edit/:id`} element={<EditAlbumPage />} />
               <Route path='/albums/:mbid' element={<AlbumDetails />} />
-              <Route path='/albums/user' element={<UserAlbums />} />
+              <Route path='/useralbums' element={<UserAlbums />} />
+              <Route path='/useralbums/edit/:id' element={<EditAlbumPage />} />
               <Route path='/artist/:name' element={<Artist />} />
-              <Route path='/profile/:id' element={<ProfilePage />} />
               <Route path='*' element={<ErrorPage />} />
             </Routes>
         </App>

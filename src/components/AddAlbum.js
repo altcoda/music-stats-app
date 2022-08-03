@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addAlbum, editAlbum } from '../utils/crud';
+import { addAlbum } from '../utils/crud';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
 
-export const AlbumForm = ({albumId, actionType}) => {
+export const AddAlbum = () => {
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');
     const [tags, setTags] = useState([]);
@@ -14,27 +14,18 @@ export const AlbumForm = ({albumId, actionType}) => {
     const [cover, setCover] = useState(null);
     const navigate = useNavigate();
 
-    const actions = {
-        add: () => {
-            try {
-                addAlbum({ name, artist, description, tags, release_date: new Date(date), cover });
-            } catch(err) {
-                console.log(err)
-                return
-            }
-    
-            navigate('/albums/user/')
-        },
-        edit: () => {
-            try {
-                editAlbum(albumId, { name, artist, description, tags, release_date: new Date(date), cover });
-            } catch(err) {
-                console.log(err)
-                return
-            }
-    
-            navigate('/albums/user/')
+
+    const onAddAlbum = (e) => {
+        e.preventDefault();
+
+        try {
+            addAlbum({ name, artist, description, tags, release_date: new Date(date), cover });
+        } catch(err) {
+            console.log(err)
+            return
         }
+
+        navigate('/useralbums')
     }
 
     const uploadImage = async(e) => {
@@ -42,9 +33,8 @@ export const AlbumForm = ({albumId, actionType}) => {
         setCover(e.target.value);
     }
 
-
     return (
-        <Form id={`${actions[actionType]}-album-form`} style={{ width: '400px' }} className="form" onSubmit={actions[actionType]}>
+        <Form id={'add-album-form'} style={{ width: '400px' }} className="form" onSubmit={onAddAlbum}>
             <label htmlFor="name" className="required">Album Name</label>
             <input
                 id="name"
@@ -95,7 +85,7 @@ export const AlbumForm = ({albumId, actionType}) => {
             />
 
             <button type="submit" id="add-album-button" className="green">
-                {actionType} album
+                Add album
             </button>
         </Form>
     )

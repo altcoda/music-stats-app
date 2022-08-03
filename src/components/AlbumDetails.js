@@ -15,7 +15,6 @@ export const AlbumDetails = () => {
     useEffect(() => {
         const initDetails = async() => {
             const details = await getAlbum(id);
-            console.log(details)
             setAlbum(details)
         }
         initDetails()
@@ -25,7 +24,7 @@ export const AlbumDetails = () => {
         <div id="details" className="details two-col">
             {album &&
             <Fragment>
-                <div class="left">
+                <div className="left">
                     <img src={album.image && album.image[3]['#text']} alt="" />
                     <h1>
                         <b className="albumName">{album.name && album.name}</b> by <b className="artistName">{album.artist && album.artist}</b>
@@ -47,18 +46,17 @@ export const AlbumDetails = () => {
                     </section>}
                 </div>
 
-                <div class="right">
+                <div className="right">
                     {album.tags &&
                     <section id="tags" className="tags">
                         <ul>
-                            {album.tags.tag.map(tag => <li key={tag.name} class="tag">{tag.name}</li>)}
+                            {album.tags.tag.map(tag => <li key={tag.name} className="tag">{tag.name}</li>)}
                         </ul>
                     </section>}
                     {(album.wiki && album.wiki.summary) &&
                     <section id="summary" className="summary">
                         <p dangerouslySetInnerHTML={parseHTML(album.wiki.summary, [' <a href=','... <a href='])} />
                     </section>}
-                    {console.log(album.wiki)}
                     {(album.wiki && album.wiki.bio) &&
                     <section id="summary" className="summary">
                         <p dangerouslySetInnerHTML={parseHTML(album.wiki.bio, [' <a href=','... <a href='])} />

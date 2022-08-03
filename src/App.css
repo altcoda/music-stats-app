@@ -233,6 +233,14 @@ textarea {
   background-color: var(--red);
 }
 
+.like {
+  background-color: var(--light-grey);
+}
+
+.like:hover {
+  background-color: var(--red);
+}
+
 .edit {
   background-color: var(--light-grey);
   color: #000000;
@@ -241,6 +249,10 @@ textarea {
 .edit:hover {
   background-color: var(--green);
   color: #000000;
+}
+
+.delete {
+  background-color: var(--light-grey);
 }
 
 .delete:hover {
@@ -265,6 +277,12 @@ textarea {
   flex-direction: row;
 }
 
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -272,7 +290,6 @@ textarea {
 }
 
 .flex-column .albums {
-  flex-wrap: wrap;
   justify-content: center;
 }
 

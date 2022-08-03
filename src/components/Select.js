@@ -3,7 +3,7 @@ import { Fragment, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 
 
-export const SelectTags = ({setTags}) => {
+export const SelectTags = ({setTags, defaultTags}) => {
     const {tagOptions} = useContext(GlobalContext);
 
     return(tagOptions &&
@@ -11,12 +11,15 @@ export const SelectTags = ({setTags}) => {
             <label htmlFor="tags">Tags</label>
             <Select
                 id="select-tags"
-                defaultValue={[]}
+                defaultValue={defaultTags && defaultTags}
+                options={tagOptions}
                 className="select-tags"
                 isMulti
                 name="tags"
-                onChange={(selected) => setTags(selected.map(tag => tag.value))}
-                options={tagOptions}
+                onChange={(selected) => {
+                    const tags = selected.map(tag => tag.value)
+                    setTags(tags)
+                }}
             />
         </Fragment>
     )
@@ -33,11 +36,11 @@ export const SelectTag = () => {
             <Select
                 id="select-tags"
                 defaultValue={[]}
+                options={tagOptions}
                 placeholder="Select tag..."
                 className="select-tags"
                 name="tag"
                 onChange={(selected) => setQuery({...query, tag: selected.value})}
-                options={tagOptions}
             />
         </Fragment>
     )

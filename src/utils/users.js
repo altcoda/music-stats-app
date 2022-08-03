@@ -31,11 +31,11 @@ export const getUserData = (user) => {
   const coverImage = user.get('headerImage') !== undefined ? user.get('headerImage')['_url'] : null;
   
   return {
-      username,
-      description,
-      birthdate,
-      icon,
-      coverImage
+    username,
+    description,
+    birthdate,
+    icon,
+    coverImage
   };
 }
 

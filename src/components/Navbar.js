@@ -38,7 +38,7 @@ export const Navbar = () => {
             {user &&
             <Fragment>
             <li className="dropdown hidden">
-                <Link to="/albums/user">
+                <Link to="/useralbums">
                   User Albums
                 </Link>
             </li>

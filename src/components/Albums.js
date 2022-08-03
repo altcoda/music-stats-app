@@ -1,5 +1,5 @@
 import './Albums.css';
-import { Fragment, useContext, useEffect } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 import { PropTypes } from 'prop-types';
 import { Album } from './Album';
@@ -12,17 +12,27 @@ export const Albums = ({className, limit}) => {
 
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
     const {query, setQuery} = useContext(GlobalContext);
+    const [pages, setPages] = useState(0);
+    const [initialised, setInitialised] = useState(false);
 
+
+    const initAlbums = async () => {
+        const {albums, pageCount} = await getAlbums(query);
+        setAlbumsList(albums)
+        setPages(pageCount)
+    }
+
+    // request again on query change (avoid infinite loop)
     useEffect(() => {
-        const initAlbums = async () => {
-            //const {albums, pages} = await getAlbums(query);
-            //console.log(albums)
-            //setAlbumsList(albums);
-            //setQuery({...query, pages: pages})
-        }
-
+        if(!initialised) return
         initAlbums();
-    }, [query])
+    },[query])
+
+    // initial request
+    useEffect(() => {
+        initAlbums();
+        setInitialised(true)
+    },[])
 
     return (
         <Fragment>
@@ -43,7 +53,7 @@ export const Albums = ({className, limit}) => {
                 .slice(0,  limit ? limit : albumsList.length - 3)
                 .map((album, i) => <li key={i}><Album album={album} /></li>)}
             </ul>
-            <Pagination />
+            <Pagination pages={pages} />
         </Fragment>
     );
 }

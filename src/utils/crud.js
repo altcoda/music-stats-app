@@ -20,7 +20,7 @@ const getHeaders = (options) => {
 export const getResponse = async({url, query}, headers) => {
     return await axios.get(
         [ process.env.REACT_APP_LAST_FM_API_URL, url, query ].join(''),
-        getHeaders()
+        getHeaders(headers)
     )
     .then(res => res.data)
 }
@@ -33,16 +33,14 @@ export const getAlbums = async(query) => {
 
     const res = getResponse({url, query})
     .then(data => {
-        console.log(data)
-        const pages = data.albums['@attr'].totalPages;
+        const pageCount = data.albums['@attr'].totalPages;
         const albums = data.albums.album;
-        return {albums, pages}
+        return {albums, pageCount}
     })
     .catch((err) => console.log(err))
 
     return res
 }
-
 
 export const getAlbum = async(id) => {
     const res = getResponse({url: API_PATH.ALBUM + `&mbid=${id}`})
@@ -75,19 +73,19 @@ export const addAlbum = async({ name, artist, description, tags, release_date, c
 
 export const editAlbum = async(id, { name, artist, description, tags, release_date, cover }) => {
     const album = await new Parse.Query('Album');
-    
+
     album.get(id)
-        .then((album) => {
-            album.set('name', name);
-            album.set('artist', artist);
-            album.set('description', description);
-            album.set('tags', tags);
-            album.set('release_date', release_date);
-            album.set('cover', cover);
-            album.save();
-        }, (err) => {
-            alert('Failed to update. Error:' + err.message)
-        });
+    .then((album) => {
+        album.set('name', name);
+        album.set('artist', artist);
+        album.set('description', description);
+        album.set('tags', tags);
+        album.set('release_date', release_date);
+        album.set('cover', cover);
+        album.save();
+    }, (err) => {
+        alert('Failed to update. Error:' + err.message)
+    });
 }
 
 
@@ -95,10 +93,9 @@ export const deleteAlbum = async(id) => {
     const album = await new Parse.Query('Album');
 
     album.get(id)
-    .then((obj) => {
-    // The object was retrieved successfully and it is ready to update.
-    obj.destroy().then((obj) => {
-        // The object was deleted
+    .then((album) => {
+    album.destroy().then((album) => {
+        document.getElementById(id).remove()
     }, (err) => {
         alert('Failed to delete. Error:' + err.message)
     })
@@ -106,6 +103,35 @@ export const deleteAlbum = async(id) => {
         alert('Object wasn\'t found.')
         console.log(err.message)
     });;
+}
+
+
+export const getUserAlbum = async(id) => {
+    const Album = await new Parse.Query('Album');
+
+    const album = Album.get(id)
+    .then((album) => {
+        const name = album.get('name') !== undefined ? album.get('name') : null;
+        const artist = album.get('artist') !== undefined ? album.get('artist') : null;
+        const cover = album.get('cover') !== undefined ? album.get('cover') : null;
+        const release_date = album.get('release_date') !== undefined ? album.get('release_date') : null;
+        const tags = album.get('tags') !== undefined ? album.get('tags') : null;
+        const description = album.get('description') !== undefined ? album.get('description') : null;
+        
+        return {
+            id: album.id,
+            name,
+            artist,
+            cover,
+            release_date,
+            tags,
+            description
+        };
+    }, (err) => {
+        console.log(err.message)
+    });
+
+    return album
 }
 
 
@@ -117,6 +143,8 @@ export const getUserAlbums = async() => {
         const name = album.get('name') !== undefined ? album.get('name') : null;
         const artist = album.get('artist') !== undefined ? album.get('artist') : null;
         const cover = album.get('cover') !== undefined ? album.get('cover') : null;
+        const release_date = album.get('release_date') !== undefined ? album.get('release_date') : null;
+        const tags = album.get('tags') !== undefined ? album.get('tags') : null;
         const description = album.get('description') !== undefined ? album.get('description') : null;
         
         return {
@@ -124,6 +152,8 @@ export const getUserAlbums = async() => {
             name,
             artist,
             cover,
+            release_date,
+            tags,
             description
         };
     })

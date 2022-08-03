@@ -5,3 +5,8 @@
 .user-album .controls {
     margin: 10px 0 0 0;
 }
+
+.user-album .more-info {
+    display: flex;
+    align-items: center;
+}

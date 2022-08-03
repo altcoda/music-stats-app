@@ -22,7 +22,7 @@ export const Artist = (props) => {
 
     return (artist &&
         <div id="artist" className="artist two-col">
-            <div class="left">
+            <div className="left">
                 <img src={artist.image && artist.image[3]['#text']} alt="" />
                 <h1><b className="albumName">{artist.name}</b></h1>
                 {artist.bio &&
@@ -30,11 +30,11 @@ export const Artist = (props) => {
                     <p dangerouslySetInnerHTML={parseHTML(artist.bio.summary)} />
                 </section>}
             </div>
-            <div class="right">
+            <div className="right">
                 {artist.tags &&
                     <section id="tags" className="tags">
                         <ul>
-                            {artist.tags.tag.map(tag => <li key={tag.name} class="tag">{tag.name}</li>)}
+                            {artist.tags.tag.map(tag => <li key={tag.name} className="tag">{tag.name}</li>)}
                         </ul>
                     </section>}
                 

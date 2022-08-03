@@ -24,7 +24,7 @@ export const HomePage = () => {
             </Header>
 
             <Header id="albums-header" className="albums-header reset-height" style={{backgroundColor: '#FFFFFF'}}>
-                {albumsList.length > 0 ?
+                {albumsList ?
                 <Albums limit="12" className="albums"/> :
                 <div style={{display: 'flex', alignItems: 'center', height:'80px', padding:'20px'}}>We apologise, there was a problem obtaining the albums data.</div>}
             </Header>
