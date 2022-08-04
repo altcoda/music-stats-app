@@ -17,9 +17,11 @@
   --green: #5efd73;
   --red: rgb(253, 94, 94);
   --violet: #CDC6FF;
+  --purple: rgb(218, 138, 255);
+  --purple-hover: rgb(190, 50, 255);
   --text: rgb(71, 71, 71);
-  --link: #000;
-  --link-hover: var(--secondary-color);
+  --link: grey;
+  --link-hover: var(--purple);
   --footer: var(--primary-color);
   --footer-text: var(--text);
   --med-border: #888;
@@ -70,13 +72,11 @@ a:visited {
   color: var(--link);
   text-decoration: none;
   cursor: pointer;
-  opacity: 0.7;
   transition-duration: 0.3s;
 }
 
 a:hover {
   color: var(--link-hover);
-  opacity: 1;
 }
 
 code {
@@ -163,6 +163,7 @@ input, button {
 }
 
 button {
+  text-align: center;
   border: 0;
   border-radius: 5px;
   cursor: pointer;
@@ -215,12 +216,12 @@ textarea {
 }
 
 .standart {
-  background-color: rgb(218, 138, 255);
+  background-color: var(--purple);
   color: #FFFFFF;
 }
 
 .standart:hover {
-  background-color: rgb(190, 50, 255);
+  background-color: var(--purple-hover);
   color: #FFFFFF;
 }
 
@@ -361,7 +362,8 @@ textarea {
   padding: 20px;
   text-align: center;
   font-size: 14px;
-  background-color: var(--med-grey);
+	background-color: var(--light-grey);
+	border-right: 1px solid var(--med-grey);
 }
 
 .two-col .right {

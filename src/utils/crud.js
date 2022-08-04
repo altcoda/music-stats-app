@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Parse from 'parse/dist/parse.min.js';
+import { User } from 'parse';
+import { getCurrentUser } from './users';
 
 
 const API_PATH = {
@@ -34,9 +36,11 @@ export const getAlbums = async(query) => {
 
     const res = getResponse({url, query})
     .then(data => {
-        const albums = data.albums.album;
-        const {totalPages, perPage} = data.albums['@attr'];
-        return {albums, pages: totalPages, limit: perPage}
+        return {
+            albums: data.albums.album,
+            pages: data.albums['@attr'].totalPages,
+            limit: data.albums['@attr'].perPage
+        }
     })
     .catch((err) => console.log(err))
 
@@ -52,14 +56,16 @@ export const getAlbum = async(id) => {
     return res
 }
 
-const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description'];
+const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description', 'added_by'];
 
 export const addAlbum = async(data) => {
-    
-    const album = new Parse.Object('Album');
 
+    const album = new Parse.Object('Album');
+    const currentUser = await getCurrentUser();
+
+    album.set('added_by', new User({id:currentUser.objectId}).toPointer());
     albumProps.forEach((prop) => {
-        album.set(`${prop}`, data[prop])  
+        album.set(`${prop}`, data[prop])
     })
 
     try {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { editAlbum } from '../utils/crud';
-import { parseInputDate } from '../utils/global';
+import { getDate, parseInputDate } from '../utils/global';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
@@ -20,14 +20,13 @@ export const EditAlbum = ({album}) => {
         setName(album.name)
         setArtist(album.artist)
         setCover(album.cover)
-        setTags(album.tags)
         setDescription(album.description)
-        setDate(album.release_date)
+        setDate(getDate(album.release_date).YMD)
     },[album])
 
     const onEdit = () => {
         try {
-            editAlbum(album.id, {name, artist, cover, tags: tags, description, date: parseInputDate(date)});
+            editAlbum(album.id, {name, artist, cover, tags: tags, description, release_date: parseInputDate(date)});
         } catch(err) {
             console.log(err)
         }
@@ -75,7 +74,7 @@ export const EditAlbum = ({album}) => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
             />
-            <SelectTags defaultTags={tags} setTags={setTags} />
+            {album.tags && <SelectTags defaultTags={album.tags} setTags={setTags} />}
 
             <label htmlFor="cover" className="required">Album Cover</label>
             <input

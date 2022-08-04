@@ -5,13 +5,14 @@ import { GlobalContext } from '../context/GlobalProvider';
 
 export const SelectTags = ({setTags, defaultTags}) => {
     const {tagOptions} = useContext(GlobalContext);
+    const selectedOptions = defaultTags && tagOptions.filter(tag => defaultTags.includes(tag.value))
 
     return(tagOptions &&
         <Fragment>
             <label htmlFor="tags">Tags</label>
             <Select
                 id="select-tags"
-                defaultValue={defaultTags && defaultTags}
+                defaultValue={selectedOptions}
                 options={tagOptions}
                 className="select-tags"
                 isMulti

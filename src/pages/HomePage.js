@@ -13,7 +13,7 @@ export const HomePage = () => {
 
     return(
         <Fragment>
-            <Header id="main-header" className="main-header" bgd="linear-gradient(rgba(255, 36, 241, 0.2), rgba(0, 4, 255, 0.2)), url(/img/UI/girl-music-2.jpg)">
+            <Header id="main-header" className="main-header" bgd="linear-gradient(rgba(255, 36, 241, 0.2), rgba(160, 161, 255, 0.2)), url(/img/UI/girl-music-2.jpg)">
                 <h1>{user ? `hello, ${user.username}!` : `Welcome to ${siteName}`}</h1>
                 <section className={`join ${user && 'hidden'}`}>
                     <h2>Want to add your own albums/make lists?</h2>

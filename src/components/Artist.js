@@ -5,8 +5,7 @@ import { getArtist } from '../utils/crud';
 import { parseHTML } from '../utils/global';
 
 
-// write later
-export const Artist = (props) => {
+export const Artist = () => {
 
     const [artist, setArtist] = useState({});
     const {pathname} = useLocation();

@@ -7,6 +7,9 @@ export const initParse = () => {
 };
 
 
+const userProps = ['username', 'description', 'birthdate', 'avatar', 'headerImage']
+
+
 export const getCurrentUser = () => {
   const currentUser = localStorage.getItem(`Parse/${process.env.REACT_APP_APP_ID}/currentUser`);
   return JSON.parse(currentUser)
@@ -24,22 +27,21 @@ export const logoutUser = async () => {
 
 
 export const getUserData = (user) => {
-  const username = user.get('username') !== undefined ? user.get('username') : null;
-  const description = user.get('description') !== undefined ? user.get('description') : null;
-  const birthdate = user.get('description') !== undefined ? user.get('birthdate') : null;
-  const icon = user.get('avatar') !== undefined ? user.get('avatar')['_url'] : null;
-  const coverImage = user.get('headerImage') !== undefined ? user.get('headerImage')['_url'] : null;
   
+  const data = {};
+
+  userProps.forEach((prop) => {
+      data[prop] = user.get(prop) !== undefined ? user.get(prop) : null;
+  })
+
   return {
-    username,
-    description,
-    birthdate,
-    icon,
-    coverImage
+    ...data,
+    icon: data.avatar['_url'],
+    coverImage: data.headerImage['_url']
   };
 }
 
-
+// get user by id
 export const getUser = async(id) => {
   const User = await new Parse.Query('User');
   const user = await User.get(id);
@@ -48,8 +50,7 @@ export const getUser = async(id) => {
   return data
 }
 
-
-//TODO
+//TODO:
 export const getAllUsers = async(id) => {
   const user = await new Parse.Query('User');
   const count = await user.count();
@@ -62,7 +63,7 @@ export const getAllUsers = async(id) => {
   return { users, count }
 }
 
-// TODO
+//TODO:
 export const editUser = async(id, data) => {
   const User = Parse.Object.extend("User");
   const user = new User();
