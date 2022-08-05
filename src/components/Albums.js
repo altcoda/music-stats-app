@@ -12,18 +12,18 @@ export const Albums = ({className, limit}) => {
 
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
     const {query} = useContext(GlobalContext);
-    const [pages, setPages] = useState(0);
+    const [pages, setPages] = useState(null);
     const [defaultLimit, setDefaultLimit] = useState(0);
     const [initialised, setInitialised] = useState(false);
 
     const initAlbums = async () => {
-        const {albums, pageCount, limit} = await getAlbums(query);
+        const {albums, pages, limit} = await getAlbums(query);
         setAlbumsList(albums)
-        setPages(pageCount)
+        setPages(pages)
         setDefaultLimit(limit)
     }
 
-    // request again on query change (avoid infinite loop)
+    // request again on query change
     useEffect(() => {
         if(!initialised) return
         initAlbums();

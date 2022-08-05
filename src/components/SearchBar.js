@@ -15,16 +15,12 @@ export const SearchBar = () => {
     }
 
     return (
-        <form 
-            id="search-form" 
-            onSubmit={onSearch}
-            className="search-form"
-        >
+        <form id="search-form" onSubmit={onSearch} className="search-form">
             <input
                 placeholder="Search by album/artist name"
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button type="submit" id="search-button" className="search-button standart"><FaSearch /></button>
+            <button type="submit" id="search-button" className="search-button purple"><FaSearch /></button>
         </form>
     );
 }

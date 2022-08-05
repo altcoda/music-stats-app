@@ -1,5 +1,5 @@
 import './Pagination.css';
-import { Fragment, useContext } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalProvider';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
@@ -25,12 +25,11 @@ export const Pagination = ({pages}) => {
                 {(query && query.page > 1) && <li onClick={onPrevPage} id="prev-page" className="box"><FaAngleLeft /></li>}
                 <label htmlFor="page-input" className="hidden">Page:</label>
                 <input type="number" onChange={onPageChange} id="page-input" value={query.page} className="box"/>
-                <input type="checkbox" />
+
                 {(query && query.page !== pages) &&
-                <Fragment>
-                    <li onClick={onNextPage} id="next-page" className="box"><FaAngleRight /></li>
-                    <li onClick={onPageChange} className="box">{pages && pages}</li>
-                </Fragment>
+                    <li onClick={onNextPage} id="next-page" className="box">
+                        <FaAngleRight />
+                    </li>
                 }
             </ul>
         </nav>

@@ -179,12 +179,12 @@ button a:visited {
   border: 1px solid var(--med-border);
 }
 
-.standart {
+.purple {
   background-color: var(--purple);
   color: #FFFFFF;
 }
 
-.standart:hover {
+.purple:hover {
   background-color: var(--purple-hover);
   color: #FFFFFF;
 }
