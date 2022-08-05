@@ -1,6 +1,6 @@
 # About
 
-![app preview](https://i.ibb.co/7vnwjNR/Screenshot-2022-07-28-at-17-44-21-Music-Stats.png)
+![music-stats-app preview](https://i.ibb.co/bmt6scM/Screenshot-2022-08-05-at-23-43-39-Music-Stats.png)
 
 This is a music app created as an assignment for SoftUni's React course.
 
@@ -9,13 +9,11 @@ I used Back4App for the Backend and Parse SDK to retrieve and modify data. I opt
 # Features
 
 - Uses the last.fm API to retrieve popular albums.
-- Search/filter albums by tag.
-- Browse through pages easily with pagination.
+- Filter the albums by tag and search by album/artist name.
+- Browse through pages with pagination.
 - Create an account (option to request password reset).
-- Submit albums and view them on a separate page as well as modify them. You can also see albums from other users.
-- Users can view their profile and <b>edit it(*)</b>.
-
-<b>Anything marked with * is still being worked on.</b>
+- Under the Albums dropdown: submit albums and view them as well as modify them. You can also see albums from other users.
+- Edit your profile with live preview.
 
 # Setup
 
