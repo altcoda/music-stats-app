@@ -3,6 +3,7 @@ import { Albums } from '../components/Albums';
 import { Header } from '../components/Header';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalProvider';
+import { ContactForm } from '../components/ContactForm';
 
 
 export const HomePage = () => {
@@ -24,13 +25,13 @@ export const HomePage = () => {
             </Header>
 
             <Header id="albums-header" className="albums-header reset-height" style={{backgroundColor: '#FFFFFF'}}>
-                {albumsList ?
+                {/* {albumsList ?
                 <Albums limit="12" className="albums"/> :
-                <div style={{display: 'flex', alignItems: 'center', height:'80px', padding:'20px'}}>We apologise, there was a problem obtaining the albums data.</div>}
+                <div style={{display: 'flex', alignItems: 'center', height:'80px', padding:'20px'}}>We apologise, there was a problem obtaining the albums data.</div>} */}
             </Header>
 
             <Header id="info-header" className="info-header sharpen" bgd="linear-gradient(rgba(0, 4, 255, 0.3), rgba(92, 0, 255, 0.3)), url(/img/UI/vinyl-1.jpg)">
-            
+                <ContactForm />
             </Header>
         </Fragment>
     )

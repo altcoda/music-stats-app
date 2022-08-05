@@ -70,10 +70,10 @@ export const editUser = async(id, data) => {
   
   const res = user.get(id)
       .then((user) => {
-          if(data.avatar) {
-              user.set('avatar[url]', data.avatar)
-          }
-          user.save()
+          // if(data.avatar) {
+          //     user.set('avatar[url]', data.avatar)
+          // }
+          // user.save()
       }, (err) => {
           alert('Failed to update. Error:' + err.message)
       });

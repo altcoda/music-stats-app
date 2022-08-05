@@ -122,50 +122,21 @@ li {
   display: inline;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  padding: 20px;
-  border-radius: 5px;
-  font-size: 14px;
-  box-shadow: var(--light-box-shadow);
-  background-color: #FFFFFF;
-  color: #000000;
-}
-
-form button,
-form input {
-  width: 100%;
-  margin: 10px 0;
-  border-radius: 5px;
-}
-
-textarea,
-input {
-  border: 2px solid var(--light-grey);
-}
-
-textarea:focus,
-input:focus {
-  outline:0;
-  border: 2px solid var(--med-grey);
-}
-
-input::placeholder {
-  line-height: normal;
-}
-
 input, button {
   padding: 10px;
   margin: 0 5px;
 }
 
+form,
+input,
+button,
+textarea {
+  border-radius: 5px;
+}
+
 button {
   text-align: center;
   border: 0;
-  border-radius: 5px;
   cursor: pointer;
   transition-duration: 0.2s;
 }
@@ -180,17 +151,6 @@ button a:visited {
   color: #000000;
 }
 
-textarea {
-  overflow: auto;
-  outline: none;
-  resize: none; /*remove the resize handle on the bottom right*/
-  width: 100%;
-  min-height: 150px;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
-}
-
 .page {
   position: relative;
   padding: 20px 0 70px 0;
@@ -201,11 +161,6 @@ textarea {
   justify-content: center;
   min-height: calc(100vh - 70px);
   text-align: center;
-}
-
-.form .select-tags {
-  margin: 10px;
-  padding: 0;
 }
 
 .box {

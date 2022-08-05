@@ -1,0 +1,50 @@
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 20px;
+  font-size: 14px;
+  box-shadow: var(--light-box-shadow);
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+form button,
+form input {
+  width: 100%;
+  margin: 10px 0;
+}
+
+textarea,
+input {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-size: 14px;
+  border: 2px solid var(--light-grey);
+}
+
+textarea:focus,
+input:focus {
+  outline:0;
+  border: 2px solid var(--med-grey);
+}
+
+input::placeholder {
+  line-height: normal;
+}
+
+textarea {
+  overflow: auto;
+  outline: none;
+  resize: none;
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+.form .select-tags {
+  margin: 10px;
+  padding: 0;
+}

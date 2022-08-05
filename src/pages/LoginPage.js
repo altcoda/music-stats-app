@@ -36,7 +36,7 @@ export const LoginPage = () => {
   return (
     <Header bgd="url('./img/UI/performance-1.jpg')" className="login container flex-column">
         {!user &&
-        <Form onSubmit={doUserLogIn} className="login-form">
+        <Form onSubmit={doUserLogIn} id="login-form" className="login-form">
             <label htmlFor="username" className="required">Username</label>
             <input
                 id="username"

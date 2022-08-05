@@ -7,21 +7,21 @@ import { getCurrentUser } from '../utils/users';
 import Parse from 'parse/dist/parse.min.js';
 
 
-export const RegisterPage = (props) => {
-  const navigate = useNavigate();
+export const RegisterPage = () => {
+
   const { setUser } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const createUser = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const username = formData.get('username');
-    const email = formData.get('email');
-    const password = formData.get('password');
+    const username = document.getElementById('username').value;
+    const email =  document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
     if(username.length < 4) {
-        alert('Username must be at least 4 characters long.')
-        return
+        alert('Username must be at least 4 characters long.');
+        return;
     }
 
     let newUser = new Parse.User();
@@ -32,7 +32,9 @@ export const RegisterPage = (props) => {
 
     try {
       newUser = await newUser.save();
-      const currentUser = getCurrentUser();
+      await Parse.User.logIn(username, password);
+      const currentUser = await getCurrentUser();
+      
       setUser(currentUser);
       navigate('/');
     } catch (error) {
@@ -49,11 +51,11 @@ export const RegisterPage = (props) => {
         style={{ maxWidth: '300px' }}
       >
         <label>Username</label>
-        <input id="username" type="text" name="username" placeholder="username" required />
+        <input id="username" type="text" placeholder="Username" required />
         <label>Email</label>
-        <input id="email" type="email" name="email" placeholder="email" required />
+        <input id="email" type="email" placeholder="Email" required />
         <label>Password</label>
-        <input id="password" type="password" name="password" placeholder="password" required />
+        <input id="password" type="password" placeholder="Password" required />
         <button type="submit" id="createButton" className="green">Sign Up</button>
       </Form>
     </Header>

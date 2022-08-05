@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addAlbum } from '../utils/crud';
 import { parseInputDate } from '../utils/global';
-import { Album } from './Album';
 import { Form } from './Form';
 import { SelectTags } from './Select';
 
@@ -36,7 +35,7 @@ export const AddAlbum = () => {
     }
 
     return (
-        <Form id={'add-album-form'} style={{ width: '400px' }} className="form" onSubmit={onAddAlbum}>
+        <Form id={'add-album-form'} style={{ width: '400px' }} className="form add-form" onSubmit={onAddAlbum}>
             <label htmlFor="name" className="required">Album Name</label>
             <input
                 id="name"

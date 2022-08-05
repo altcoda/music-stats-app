@@ -56,7 +56,7 @@ export const getAlbum = async(id) => {
     return res
 }
 
-const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description', 'added_by'];
+const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description'];
 
 export const addAlbum = async(data) => {
 
@@ -115,6 +115,7 @@ export const getUserAlbum = async(id) => {
     .then((album) => {
         const data = {};
 
+        data.added_by = album.get('added_by') !== undefined ? album.get('added_by') : null; 
         albumProps.forEach((prop) => {
             data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;
         })
@@ -135,6 +136,7 @@ export const getUserAlbums = async() => {
     const albums = await album.map(album => {
         const data = {};
 
+        data.added_by = album.get('added_by') !== undefined ? album.get('added_by') : null; 
         albumProps.forEach((prop) => {
             data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;  
         })

@@ -16,7 +16,7 @@ export const EditAlbum = ({album}) => {
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {  
+    useEffect(() => { 
         setName(album.name)
         setArtist(album.artist)
         setCover(album.cover)
@@ -26,7 +26,14 @@ export const EditAlbum = ({album}) => {
 
     const onEdit = () => {
         try {
-            editAlbum(album.id, {name, artist, cover, tags: tags, description, release_date: parseInputDate(date)});
+            editAlbum(album.id, {
+                name,
+                artist,
+                cover,
+                tags: tags,
+                description,
+                release_date: parseInputDate(date)
+            });
         } catch(err) {
             console.log(err)
         }
@@ -35,7 +42,7 @@ export const EditAlbum = ({album}) => {
     }
 
     return (
-        <Form id="edit-album-form" style={{ width: '400px' }} className="form" onSubmit={onEdit}>
+        <Form id="edit-album-form" style={{ width: '400px' }} className="form edit-form" onSubmit={onEdit}>
             <label htmlFor="name" className="required">Album Name</label>
             <input
                 type="text"

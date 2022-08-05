@@ -7,7 +7,6 @@ import { GlobalProvider } from './context/GlobalProvider';
 import { ErrorPage } from './pages/ErrorPage';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { LoginPage } from './pages/LoginPage';
 import { PasswordReset } from './pages/PasswordReset';
@@ -29,7 +28,6 @@ root.render(
             <Routes>
               <Route index path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
-              <Route path='/contact' element={<ContactPage />} />
               <Route path='/register' element={<RegisterPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/reset-password' element={<PasswordReset />} />

@@ -7,7 +7,6 @@ import { getMinutes, parseHTML } from '../utils/global';
 
 export const AlbumDetails = () => {
 
-    // useRef isn't working for some reason
     const [album, setAlbum] = useState({});
     const {pathname} = useLocation();
     const id = pathname.split('/').pop();

@@ -1,0 +1,8 @@
+.contact-form h2 {
+	color: var(--purple);
+	display: flex;
+	margin: 0 0 20px 0;
+	font-size: 30px;
+	border-bottom: 2px solid;
+	justify-content: center;
+}
