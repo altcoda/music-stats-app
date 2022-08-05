@@ -1,11 +1,11 @@
 import Select from 'react-select';
 import { Fragment, useContext } from 'react';
-import { GlobalContext } from '../context/GlobalProvider';
+import { GlobalContext } from '../../context/GlobalProvider';
 
 
 export const SelectTags = ({setTags, defaultTags}) => {
     const {tagOptions} = useContext(GlobalContext);
-    const selectedOptions = defaultTags && tagOptions.filter(tag => defaultTags.includes(tag.value))
+    const selectedOptions = defaultTags && tagOptions.filter(tag => defaultTags.includes(tag.value));
 
     return(tagOptions &&
         <Fragment>

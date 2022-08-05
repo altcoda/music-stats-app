@@ -6,6 +6,7 @@
 }
 
 .profile header {
+	z-index: 38;
     display: flex;
     flex-direction: row;
     height: 300px;
@@ -14,18 +15,68 @@
 }
 
 .profile .icon {
-    align-self: flex-end;
-    width: 150px;
-    margin-bottom: -75px;
-    border: 4px solid #000000;
-    border-radius: 50%;
+	z-index: 40;
+	align-self: center;
+	width: 150px;
+	height: 150px;
+	margin-top: -75px;
+	border: 4px solid #000000;
+}
+
+.icon-edit-overlay {
+	background-color: var(--primary-color);
+	padding: 10px;
+	z-index: 41;
+	position: absolute;
+	align-self: center;
+	font-size: 70px;
+	color: #000;
+	margin: -30px 0 0 0;
+	border-radius: 50%;
+	opacity: 0.5;
+}
+
+.switch-icon-style label {
+	margin: 5px 0px 15px 0px;
+	padding: 5px;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	border-bottom: 2px solid var(--light-grey);
+}
+
+.edit-images-form small {
+	font-size: 11px;
+	text-align: center;
+	margin: 5px 0;
+}
+
+.edit-icon {
+	z-index: 39;
+	position: absolute;
+	align-items: center;
+	align-self: center;
+	margin: -70px 0 0 350px;
+	width: 200px;
+	font-size: 12px;
+	color: #000;
+}
+
+.edit-icon h3 {
+    margin: 0;
+}
+
+.edit-icon input {
+    max-width: 95%;
+    margin: 5px;
 }
 
 .profile .description {
-    display: flex;
-    flex-direction: column;
-    padding: 90px 0 25px 0;
-    align-items: center;
-    width: 100%;
-    border: 1px solid var(--med-border);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    padding: 20px 0;
+	width: 100%;
+	border-bottom: 1px solid var(--med-border);
 }

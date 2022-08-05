@@ -6,7 +6,7 @@ import { logoutUser } from '../utils/users';
 
 
 export const Navbar = () => {
-  const { user, setUser } = useContext(GlobalContext);
+  const {user, setUser} = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const toggleUserMenu = (e) => Array.from(document.querySelector('#user-nav > ul').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
@@ -28,8 +28,8 @@ export const Navbar = () => {
           <li><Link to="/about">About</Link></li>
         </ul>
         
-        <ul onMouseLeave={toggleAlbumsMenu} id="albums-nav" className="albums-nav" aria-label="albums">
-            <li onMouseEnter={toggleAlbumsMenu} style={{height: '70px'}} onClick={toggleAlbumsMenu}>
+        <ul onMouseEnter={toggleAlbumsMenu} onMouseLeave={toggleAlbumsMenu} id="albums-nav" className="albums-nav" aria-label="albums">
+            <li style={{height: '70px'}} onClick={toggleAlbumsMenu}>
                 Albums
             </li>
             <li className="dropdown hidden">
@@ -52,10 +52,10 @@ export const Navbar = () => {
       </nav>
 
       {user && (
-        <nav onMouseLeave={toggleUserMenu} id="user-nav" className="user-nav" aria-label="user">
+        <nav onMouseEnter={toggleUserMenu} onMouseLeave={toggleUserMenu} id="user-nav" className="user-nav" aria-label="user">
           <ul>
-            <li onMouseEnter={toggleUserMenu} className="icon" onClick={toggleUserMenu}>
-              <img src={user.avatar && user.avatar.url} alt="user icon" />
+            <li className="icon" onClick={toggleUserMenu}>
+              <img src={user.icon && user.icon} alt="user icon" />
             </li>
             <li className="dropdown hidden">
               <Link to={`/profile/${user.objectId}`}>Profile</Link>

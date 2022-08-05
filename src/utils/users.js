@@ -7,7 +7,7 @@ export const initParse = () => {
 };
 
 
-const userProps = ['username', 'description', 'birthdate', 'avatar', 'headerImage']
+const userProps = ['username', 'description', 'birthdate', 'cover', 'icon', 'iconBorderStyle', 'dataTheme', 'objectId']
 
 
 export const getCurrentUser = () => {
@@ -34,11 +34,7 @@ export const getUserData = (user) => {
       data[prop] = user.get(prop) !== undefined ? user.get(prop) : null;
   })
 
-  return {
-    ...data,
-    icon: data.avatar['_url'],
-    coverImage: data.headerImage['_url']
-  };
+  return data
 }
 
 // get user by id
@@ -63,20 +59,17 @@ export const getAllUsers = async(id) => {
   return { users, count }
 }
 
-//TODO:
+
 export const editUser = async(id, data) => {
-  const User = Parse.Object.extend("User");
-  const user = new User();
+  const user = await new Parse.Query('User');
   
-  const res = user.get(id)
+  user.get(id)
       .then((user) => {
-          // if(data.avatar) {
-          //     user.set('avatar[url]', data.avatar)
-          // }
-          // user.save()
+        Object.keys(data).forEach((prop) => {
+          user.set(prop, data[prop])
+        })
+        user.save()
       }, (err) => {
           alert('Failed to update. Error:' + err.message)
       });
-  
-  return res;
 }

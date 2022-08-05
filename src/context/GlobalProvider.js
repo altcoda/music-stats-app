@@ -1,28 +1,15 @@
 import React, {createContext, useReducer} from 'react';
+import { genres } from '../data/genres';
 import { RootReducer } from './reducers/RootReducer';
 
-const genres = [
-    {  label: "pop", value: "pop" },
-    {  label: "rock", value: "rock" },
-    {  label: "metal", value: "metal" },
-    {  label: "punk", value: "punk" },
-    {  label: "indie", value: "indie" },
-    {  label: "blues", value: "blues" },
-    {  label: "jazz", value: "jazz" },
-    {  label: "classical", value: "classical" },
-    {  label: "synth", value: "synth" },
-    {  label: "techno", value: "techno" },
-    {  label: "anime", value: "anime" },
-    {  label: "soundtrack", value: "soundtrack" }
-]
 
 const initialState = {
     user: null,
     siteName: 'Music Stats',
     query: {page: 1, tag: 'rock', search: ''},
+    tagOptions: genres,
     albumsList: [],
-    userAlbums: [],
-    tagOptions: genres.sort((a,b) => a - b)
+    userAlbums: []
 }
 
 export const GlobalContext = createContext(initialState);

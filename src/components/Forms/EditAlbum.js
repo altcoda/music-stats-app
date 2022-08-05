@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { editAlbum } from '../utils/crud';
-import { getDate, parseInputDate } from '../utils/global';
+import { editAlbum } from '../../utils/crud';
+import { getDate, parseInputDate } from '../../utils/global';
 import { Form } from './Form';
-import { SelectTags } from './Select';
+import { SelectTags } from '../UI/Select';
 
 
-export const EditAlbum = ({album}) => {
+export const EditAlbumForm = ({album}) => {
 
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');

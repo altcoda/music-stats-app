@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form } from '../components/Form';
+import { Form } from '../components/Forms/Form';
 import { Header } from '../components/Header';
 import { GlobalContext } from '../context/GlobalProvider';
 import { getCurrentUser } from '../utils/users';
@@ -50,11 +50,11 @@ export const RegisterPage = () => {
         className="form register"
         style={{ maxWidth: '300px' }}
       >
-        <label>Username</label>
+        <label htmlFor="username">Username</label>
         <input id="username" type="text" placeholder="Username" required />
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input id="email" type="email" placeholder="Email" required />
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input id="password" type="password" placeholder="Password" required />
         <button type="submit" id="createButton" className="green">Sign Up</button>
       </Form>

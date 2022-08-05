@@ -64,8 +64,8 @@ export const addAlbum = async(data) => {
     const currentUser = await getCurrentUser();
 
     album.set('added_by', new User({id:currentUser.objectId}).toPointer());
-    albumProps.forEach((prop) => {
-        album.set(`${prop}`, data[prop])
+    Object.keys(data).forEach((prop) => {
+        album.set(prop, data[prop])
     })
 
     try {
@@ -82,8 +82,8 @@ export const editAlbum = async(id, data) => {
 
     album.get(id)
     .then((album) => {
-        albumProps.forEach((prop) => {
-            album.set(`${prop}`, data[prop])  
+        Object.keys(data).forEach((prop) => {
+            album.set(prop, data[prop])  
         })
         album.save();
     }, (err) => {

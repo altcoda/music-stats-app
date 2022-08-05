@@ -11,7 +11,7 @@ import { Pagination } from './Pagination';
 export const Albums = ({className, limit}) => {
 
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
-    const {query, setQuery} = useContext(GlobalContext);
+    const {query} = useContext(GlobalContext);
     const [pages, setPages] = useState(0);
     const [defaultLimit, setDefaultLimit] = useState(0);
     const [initialised, setInitialised] = useState(false);

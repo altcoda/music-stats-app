@@ -10,6 +10,7 @@
 }
 
 :root {
+  --data-theme: light;
   --primary-color: #fff;
   --secondary-color: #fd5eab;
   --light-grey: #f3f3f3;
@@ -161,6 +162,14 @@ button a:visited {
   justify-content: center;
   min-height: calc(100vh - 70px);
   text-align: center;
+}
+
+.square {
+	border-radius: 0;
+}
+
+.circle {
+	border-radius: 50%;
 }
 
 .box {

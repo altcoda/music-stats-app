@@ -3,7 +3,7 @@ import { Albums } from '../components/Albums';
 import { Header } from '../components/Header';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalProvider';
-import { ContactForm } from '../components/ContactForm';
+import { ContactForm } from '../components/Forms/Contact';
 
 
 export const HomePage = () => {

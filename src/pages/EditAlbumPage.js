@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { EditAlbum } from '../components/EditAlbum';
+import { EditAlbumForm } from '../components/Forms/EditAlbum';
 import { getUserAlbum } from '../utils/crud';
 
 
@@ -20,7 +20,7 @@ export const EditAlbumPage = () => {
 
     return(
         <div id="edit-album" className="edit-album container page-center">
-            <EditAlbum album={album} setAlbum={setAlbum} />
+            <EditAlbumForm album={album} setAlbum={setAlbum} />
         </div>
     )
 }

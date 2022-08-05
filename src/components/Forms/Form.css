@@ -6,6 +6,7 @@ form {
   width: 90%;
   padding: 20px;
   font-size: 14px;
+  text-align: center;
   box-shadow: var(--light-box-shadow);
   background-color: #FFFFFF;
   color: #000000;
@@ -34,6 +35,13 @@ input::placeholder {
   line-height: normal;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 textarea {
   overflow: auto;
   outline: none;
@@ -42,6 +50,21 @@ textarea {
   min-height: 150px;
   padding: 10px;
   margin: 10px auto;
+}
+
+input[type="radio"] {
+	display: flex;
+	appearance: none;
+	transform: translateY(-0.075em);
+	margin: 0 5px;
+  padding: 5px;
+	font: inherit;
+	border-radius: 50%;
+}
+
+input[type="radio"]:checked {
+  background-color: #000000;
+  border: 2px solid #000000;
 }
 
 .form .select-tags {

@@ -1,6 +1,6 @@
 import Parse from 'parse/dist/parse.min.js';
 import { useState } from "react";
-import { Form } from '../components/Form';
+import { Form } from '../components/Forms/Form';
 import { Header } from '../components/Header';
 
 

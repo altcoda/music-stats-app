@@ -1,7 +1,7 @@
 import { SearchBar } from './SearchBar';
 import './Search.css';
 import { Fragment, useContext } from 'react';
-import { SelectTag } from './Select';
+import { SelectTag } from './UI/Select';
 import { GlobalContext } from '../context/GlobalProvider';
 import { FaTag } from 'react-icons/fa';
 

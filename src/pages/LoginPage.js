@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { GlobalContext } from '../context/GlobalProvider';
 import { Header } from '../components/Header';
-import { Form } from '../components/Form';
+import { Form } from '../components/Forms/Form';
 import { getCurrentUser } from '../utils/users';
 
 
