@@ -1,6 +1,6 @@
 # About
 
-![music-stats-app preview](https://i.ibb.co/bmt6scM/Screenshot-2022-08-05-at-23-43-39-Music-Stats.png)
+![music-stats-app preview](https://i.ibb.co/wRGHS6q/Screenshot-2022-08-07-at-00-48-46-Music-Stats.png)
 
 This is a music app created as an assignment for SoftUni's React course.
 
