@@ -20,11 +20,6 @@ export const RootReducer = (state, action) => {
                 ...state,
                 userAlbums: action.payload
             }
-        case "SET_MOUSE":
-            return {
-                ...state,
-                mouse: action.payload
-            }
         default:
             return state;
     }

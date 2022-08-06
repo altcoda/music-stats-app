@@ -35,8 +35,9 @@ export const RegisterPage = () => {
       await Parse.User.logIn(username, password);
       const currentUser = await getCurrentUser();
       
-      setUser(currentUser);
-      navigate('/');
+      setUser(currentUser)
+      navigate('/')
+      window.scrollTo(0,0)
     } catch (error) {
       alert(`Error: ${error.message}`);
     }

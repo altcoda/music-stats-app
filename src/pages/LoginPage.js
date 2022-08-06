@@ -16,7 +16,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   const doUserLogIn = async function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       await Parse.User.logIn(username, password);
@@ -27,6 +27,7 @@ export const LoginPage = () => {
       setPassword('')
 
       navigate('/')
+      window.scrollTo(0,0)
     } catch (error) {
       // Error can be caused by wrong parameters or lack of Internet connection
       alert(`Error! ${error.message}`);
@@ -34,7 +35,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <Header bgd="url('./img/UI/performance-1.jpg')" className="login container flex-column">
+    <Header id="login-header" bgd="url('./img/UI/performance-1.jpg')" className="login container flex-column">
         {!user &&
         <Form onSubmit={doUserLogIn} id="login-form" className="login-form">
             <label htmlFor="username" className="required">Username</label>

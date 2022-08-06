@@ -27,6 +27,11 @@
 
 .about-header .info {
     align-self: center;
+    max-width: 40%;
+}
+
+.about-header .info p {
+    margin: 20px 0;
 }
 
 @media only screen and (max-width: 900px) {

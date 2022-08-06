@@ -8,17 +8,11 @@ export const AboutPage = () => {
             <div style={{backgroundImage:`url(${"/img/UI/guy-music-1.jpg"})`}} className="flexImg" />
             <div className="info">
                 <h1>About Us</h1>
-                <p>This is a website dedicated to music collections and stats.</p>
-                <ul className="flex-column">
-                    <li>
-                        <h2>Profile</h2>
-                        <p>Create your account to make lists or add your album. You can customize your profile.</p>
-                    </li>
-                    <li>
-                        <h2>Add your album</h2>
-                        <p>Are you an artist? Add your own albums.</p>
-                    </li>
-                </ul>
+                <section id="about" className="about flex-column">
+                    <p><b>This is a website dedicated to music.</b> Browse through popular albums, filter them by tag and search by album/artist name. View details about the albums/artists. Create your account to like albums or submit an album created by you. Customize your profile with live preview.</p>
+
+                    <p>An option to make lists will be added in the future.</p>
+                </section>
             </div>
         </Header>
     )

@@ -14,6 +14,10 @@
     background-color: #000000;
 }
 
+.user-info {
+	align-items: center;
+}
+
 .profile .icon {
 	z-index: 40;
 	align-self: center;
@@ -162,4 +166,20 @@
 
 .edit-user-info textarea {
 	min-height: 0;
+}
+
+.profile .liked-albums-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	margin: 20px 0 50px 0;
+}
+
+.profile .like {
+	display: none;
+}
+
+.profile .liked-albums .album {
+	width: 250px;
 }

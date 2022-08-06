@@ -56,7 +56,7 @@ export const getAlbum = async(id) => {
     return res
 }
 
-const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description'];
+const albumProps = ['name', 'artist', 'cover', 'release_date', 'tags', 'description', 'added_by'];
 
 export const addAlbum = async(data) => {
 
@@ -115,7 +115,6 @@ export const getUserAlbum = async(id) => {
     .then((album) => {
         const data = {};
 
-        data.added_by = album.get('added_by') !== undefined ? album.get('added_by') : null; 
         albumProps.forEach((prop) => {
             data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;
         })
@@ -136,7 +135,6 @@ export const getUserAlbums = async() => {
     const albums = await album.map(album => {
         const data = {};
 
-        data.added_by = album.get('added_by') !== undefined ? album.get('added_by') : null; 
         albumProps.forEach((prop) => {
             data[prop] = album.get(prop) !== undefined ? album.get(prop) : null;  
         })
@@ -145,4 +143,53 @@ export const getUserAlbums = async() => {
     })
 
     return { albums, count }
+}
+
+
+export const getLikedAlbums = async(userId) => {
+    const User = await new Parse.Query('User');
+    const user = await User.get(userId);
+    const likedAlbums = await user.get('likedAlbums');
+    
+    let albums = [];
+    if(likedAlbums) {
+        albums = await likedAlbums.map(album => getUserAlbum(album.id));
+    }
+
+    return Promise.all(albums) || []
+}
+
+// like or remove like
+export const likeAlbum = async(id, userId) => {
+
+    const User = await new Parse.Query('User');
+    const user = await User.get(userId);
+
+    const Album = await new Parse.Query('Album');
+    const album = await Album.get(id);
+
+    const likedAlbums = await user.get('likedAlbums');
+
+    if(likedAlbums) {
+        const isLiked = Object.values(likedAlbums).some(album => album.id === id);
+    
+        if(isLiked === true) {
+            user.set('likedAlbums', likedAlbums.filter(album => album.id !== id));
+            
+            try {
+                await user.save();
+            } catch(err) {
+                console.log(err.message)
+            }
+            return
+        }
+    }
+
+    user.add('likedAlbums', album.toPointer());
+
+    try {
+        await user.save();
+    } catch(err) {
+        console.log(err.message)
+    }
 }

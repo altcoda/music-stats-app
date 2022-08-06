@@ -85,6 +85,7 @@ code {
 }
 
 p {
+  margin: 20px 0;
   line-height: 1.8rem;
 }
 
@@ -209,7 +210,12 @@ button a:visited {
   background-color: var(--light-grey);
 }
 
-.like:hover {
+.not-liked:hover {
+  background-color: var(--green);
+  color: #000000;
+}
+
+.liked:hover {
   background-color: var(--red);
 }
 
@@ -360,4 +366,11 @@ button a:visited {
 
 label.required {
   font-weight: 600;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 20px;
 }

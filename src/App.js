@@ -9,15 +9,16 @@ export const App = ({children}) => {
 
     const {setUser} = useContext(GlobalContext);
 
+    const initUser = async () => {
+        const currentUser = await getCurrentUser();
+        setUser(currentUser)
+    }
+
     useEffect(() => {
         initParse()
-        const initUser = async () => {
-            const currentUser = await getCurrentUser();
-            setUser(currentUser)
-        }
         initUser()
     }, [])
-    
+
     return (
         <Fragment>
             <Navbar />

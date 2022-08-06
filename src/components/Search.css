@@ -38,6 +38,10 @@
     margin: 0 0 0 10px;
 }
 
+.search-button {
+    max-width: 150px;
+}
+
 .search-title {
     display: flex;
     justify-content: center;

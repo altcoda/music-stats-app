@@ -21,7 +21,7 @@ export const PasswordReset = () => {
     };
 
     return(
-        <Header>
+        <Header id="password-reset-header" bgd="url('./img/UI/performance-1.jpg')" className="password-reset container flex-column">
             <Form style={{maxWidth: '300px'}} onSubmit={requestPasswordReset} className="password-reset container flex-column">
                 <label>Email</label>
                 <input

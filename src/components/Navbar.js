@@ -14,10 +14,11 @@ export const Navbar = () => {
   const toggleAlbumsMenu = (e) => Array.from(document.querySelector('.albums-nav').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
 
   const onUserLogout = (e) => {
-    logoutUser();
+    logoutUser()
     toggleUserMenu()
-    setUser(null);
-    navigate('/');
+    setUser(null)
+    navigate('/')
+    window.scrollTo(0,0)
   };
 
   return (

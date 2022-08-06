@@ -37,26 +37,13 @@ export const getUserData = (user) => {
   return data
 }
 
-// get user by id
+
 export const getUser = async(id) => {
   const User = await new Parse.Query('User');
   const user = await User.get(id);
   const data = await getUserData(user);
 
   return data
-}
-
-//TODO:
-export const getAllUsers = async(id) => {
-  const user = await new Parse.Query('User');
-  const count = await user.count();
-  const users = user.map(user => {
-      const data = getUserData(user)
-
-      return data
-  })
-
-  return { users, count }
 }
 
 
