@@ -1,15 +1,10 @@
 import React, { useCallback } from 'react';
-import { editUser } from '../../utils/users';
 
 
-export const IconStyleSwitch = ({user, userId, setUser}) => {
+export const IconStyleSwitch = ({setIconBorderStyle}) => {
 
     const onBorderStyleChange = useCallback((e) => {
-        const iconBorderStyle = e.target.value;
-        if(user) {
-            editUser(userId, {iconBorderStyle: iconBorderStyle})
-            setUser(prevUser => ({...prevUser, iconBorderStyle: iconBorderStyle}))
-        }
+        setIconBorderStyle(e.target.value)
     }, []);
 
     return (

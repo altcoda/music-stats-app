@@ -1,6 +1,6 @@
 import './Albums.css';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getArtist } from '../utils/crud';
 import { parseHTML } from '../utils/global';
 
@@ -8,8 +8,7 @@ import { parseHTML } from '../utils/global';
 export const Artist = () => {
 
     const [artist, setArtist] = useState({});
-    const {pathname} = useLocation();
-    const artistName = pathname.split('/').pop();
+    const {artistName} = useParams();
 
     useEffect(() => {
         const initArtist = async() => {

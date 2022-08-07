@@ -1,6 +1,6 @@
 import './ProfilePage.css';
 import { Fragment, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { getAge, getDate } from '../utils/global';
 import { getCurrentUser, getUser } from '../utils/users';
@@ -12,8 +12,7 @@ import { getLikedAlbums } from '../utils/crud';
 
 export const ProfilePage = () => {
 
-    const {pathname} = useLocation();
-    const id = pathname.split('/').pop();
+    const {id} = useParams();
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
     const [likedAlbums, setLikedAlbums] = useState([]);
@@ -21,6 +20,7 @@ export const ProfilePage = () => {
     const [cover, setCover] = useState('');
     const [description, setDescription] = useState('');
     const [birthdate, setBirthdate] = useState(null);
+    const [iconBorderStyle, setIconBorderStyle] = useState(null);
 
     useEffect(() => {
         const initUser = async () => {
@@ -48,8 +48,12 @@ export const ProfilePage = () => {
         if(user.birthdate) {
             setBirthdate(getDate(user.birthdate).YMD)
         }
+        if(user.iconBorderStyle) {
+            setIconBorderStyle(user.iconBorderStyle)
+        }
     },[user])
     
+    // update data in context after change
     useEffect(() => {
         setUser(prevUser => ({...prevUser, icon: icon}))
     },[icon])
@@ -73,6 +77,8 @@ export const ProfilePage = () => {
                         id={id}
                         setUser={setUser}
                         icon={icon}
+                        iconBorderStyle={iconBorderStyle}
+                        setIconBorderStyle={setIconBorderStyle}
                         setIcon={setIcon}
                         cover={cover}
                         setCover={setCover}

@@ -5,7 +5,7 @@ import { FaUserEdit } from 'react-icons/fa';
 import { IconStyleSwitch } from '../components/UI/IconStyleSwitch';
 
 
-export const EditImageSettings = ({user, id, setUser, icon, setIcon, cover, setCover}) => {
+export const EditImageSettings = ({user, id, setUser, icon, setIcon, iconBorderStyle, setIconBorderStyle, cover, setCover}) => {
 
     const toggleEditIconButton = () => {
         document.getElementById('icon-edit-overlay').classList.toggle('hidden');
@@ -30,15 +30,17 @@ export const EditImageSettings = ({user, id, setUser, icon, setIcon, cover, setC
 
     const onSaveImageSettings = (e) => {
         e.preventDefault()
+        
+        if(cover !== '') {
+            editUser(id, {cover})
+        }
 
-        if(user && id) {
-            if(cover !== '') {
-                editUser(id, {cover})
-            }
-    
-            if(icon !== '') {
-                editUser(id, {icon})
-            }
+        if(icon !== '') {
+            editUser(id, {icon})
+        }
+
+        if(iconBorderStyle !== '') {
+            editUser(id, {iconBorderStyle})
         }
         
         toggleEditIcon()
@@ -54,12 +56,12 @@ export const EditImageSettings = ({user, id, setUser, icon, setIcon, cover, setC
                     <input id="cover-url" placeholder="cover url" onChange={onCoverChange} />
                     <label htmlFor="icon-url">icon url</label>
                     <input id="icon-url" placeholder="image url" onChange={onIconChange} />
-                    <IconStyleSwitch user={user} userId={id} setUser={setUser} />
+                    <IconStyleSwitch user={user} userId={id} setUser={setUser} setIconBorderStyle={setIconBorderStyle}/>
                     <button type="submit" className="green">Save</button>
                     <small>(empty fields won't cause changes on save)</small>
                 </Form>
             </div>
-            {user.icon && <img onMouseEnter={toggleEditIconButton} onMouseLeave={toggleEditIconButton} onClick={onEditIcon} src={user.icon} alt="" className={`icon ${user.iconBorderStyle}`} />}
+            {user.icon && <img onMouseEnter={toggleEditIconButton} onMouseLeave={toggleEditIconButton} onClick={onEditIcon} src={user.icon} alt="" className={`icon ${iconBorderStyle}`} />}
         </Fragment>
     )
 }

@@ -1,6 +1,6 @@
 import './AlbumDetails.css';
 import { Fragment, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getAlbum } from '../utils/crud';
 import { getMinutes, parseHTML } from '../utils/global';
 
@@ -8,8 +8,7 @@ import { getMinutes, parseHTML } from '../utils/global';
 export const AlbumDetails = () => {
 
     const [album, setAlbum] = useState({});
-    const {pathname} = useLocation();
-    const id = pathname.split('/').pop();
+    const {id} = useParams();
 
     useEffect(() => {
         const initDetails = async() => {
