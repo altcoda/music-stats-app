@@ -11,7 +11,7 @@ import { ErrorPage } from './pages/ErrorPage';
 
 export const App = () => {
 
-    const {user, setUser} = useContext(GlobalContext);
+    const {setUser} = useContext(GlobalContext);
 
     const initUser = async () => {
         const currentUser = await getCurrentUser();
