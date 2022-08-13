@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { editAlbum } from '../../utils/crud';
-import { getDate, parseInputDate } from '../../utils/global';
+import { parseDateForInput, parseInputDate } from '../../utils/global';
 import { Form } from './Form';
 import { SelectTags } from '../UI/Select';
 
@@ -21,7 +21,7 @@ export const EditAlbumForm = ({album}) => {
         setArtist(album.artist)
         setCover(album.cover)
         setDescription(album.description)
-        setDate(getDate(album.release_date).YMD)
+        setDate(parseDateForInput(album.release_date))
     },[album])
 
     const onEdit = () => {

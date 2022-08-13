@@ -33,6 +33,10 @@
     width: 100%;
 }
 
+.navbar-item {
+    height: 70px;
+}
+
 .navbar ul,
 .navbar li {
     list-style: none;

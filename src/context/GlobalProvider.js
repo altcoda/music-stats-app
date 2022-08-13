@@ -1,5 +1,4 @@
 import React, {createContext, useReducer} from 'react';
-import { genres } from '../data/genres';
 import { RootReducer } from './reducers/RootReducer';
 
 
@@ -7,7 +6,6 @@ const initialState = {
     user: null,
     siteName: 'Music Stats',
     query: {page: 1, tag: 'rock', search: ''},
-    tagOptions: genres,
     albumsList: [],
     userAlbums: []
 }

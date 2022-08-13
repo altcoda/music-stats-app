@@ -7,22 +7,21 @@ export const ThemeSwitch = () => {
     const {user} = useContext(GlobalContext);
     const [dataTheme, setDataTheme] = useState();
 
+    useEffect(() => {
+        if(user.dataTheme) {
+            setDataTheme(user.dataTheme)
+            document.documentElement.setAttribute('data-theme', dataTheme);
+        }
+    }, []);
+
     const onThemeChange = useCallback(() => {
         setDataTheme(dataTheme === 'light' ? 'dark' : 'light');
     }, [dataTheme]);
 
-    useEffect(() => {
-        if(user) {
-            setDataTheme(user.dataTheme)
-        }
-        document.documentElement.setAttribute('data-theme', dataTheme);
-    }, [user]);
-
-
     return (
-        <div id='switch-data-theme' className={'theme-switch'}>
+        <div id='theme-switch' className={'theme-switch'}>
+            <label className={'toggle-theme'} htmlFor="switch">Theme</label>
             <input type='checkbox' onClick={onThemeChange} />
-            <label className={'toggle-theme'} htmlFor="switch">Switch Theme</label>
         </div>
     );
 }

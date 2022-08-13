@@ -14,8 +14,8 @@ export const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
-  const doUserLogIn = async function (e) {
+  
+  const loginUser = async(e) => {
     e.preventDefault()
 
     try {
@@ -34,10 +34,11 @@ export const LoginPage = () => {
     }
   };
 
+
   return (
     <Header id="login-header" bgd="url('./img/UI/performance-1.jpg')" className="login container flex-column">
         {!user &&
-        <Form onSubmit={doUserLogIn} id="login-form" className="login-form">
+        <Form onSubmit={loginUser} id="login-form" className="login-form">
             <label htmlFor="username" className="required">Username</label>
             <input
                 id="username"

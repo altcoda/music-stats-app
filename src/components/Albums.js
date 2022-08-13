@@ -9,7 +9,6 @@ import { Pagination } from './Pagination';
 
 
 export const Albums = ({className, limit}) => {
-
     const {albumsList, setAlbumsList} = useContext(GlobalContext);
     const {query} = useContext(GlobalContext);
     const [pages, setPages] = useState(null);
@@ -26,7 +25,7 @@ export const Albums = ({className, limit}) => {
     // request again on query change
     useEffect(() => {
         if(!initialised) return
-        initAlbums();
+        initAlbums()
     },[query])
 
     // initial request
@@ -37,24 +36,26 @@ export const Albums = ({className, limit}) => {
 
     return (
         <Fragment>
-            <Search />
-            <ul className={className && className}>
-            {albumsList && albumsList.filter(album => Boolean(album.mbid))
-                .filter(album =>
-                    query.search ?
-                    (
-                        album.name.toLowerCase()
-                        .includes(query.search.toLowerCase()) ||
-                        album.artist.name.toLowerCase()
-                        .includes(query.search.toLowerCase())
+            <Fragment>
+                <Search />
+                <ul id="albums-list" className={className && className}>
+                {albumsList && albumsList.filter(album => Boolean(album.mbid))
+                    .filter(album =>
+                        query.search ?
+                        (
+                            album.name.toLowerCase()
+                            .includes(query.search.toLowerCase()) ||
+                            album.artist.name.toLowerCase()
+                            .includes(query.search.toLowerCase())
+                        )
+                        : album
                     )
-                    : album
-                )
-                .slice(0, limit ? Number(limit) : defaultLimit)
-                .map((album, i) => <li key={i}><Album album={album} /></li>)
-            }
-            </ul>
-            <Pagination pages={pages} />
+                    .slice(0, limit ? Number(limit) : defaultLimit)
+                    .map((album, i) => <li key={i}><Album album={album} /></li>)
+                }
+                </ul>
+                <Pagination pages={pages} />
+            </Fragment>
         </Fragment>
     );
 }

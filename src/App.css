@@ -2,16 +2,16 @@
  
 @keyframes fadeInAnimation {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
-   }
+    opacity: 1;
+  }
 }
 
 :root {
   --data-theme: light;
-  --primary-color: #fff;
+  --primary-color: #FFF;
   --secondary-color: #fd5eab;
   --light-grey: #f3f3f3;
   --med-grey: #cecece;

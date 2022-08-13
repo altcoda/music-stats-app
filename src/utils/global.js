@@ -14,6 +14,8 @@ export const getDate = (date) => {
 
 export const getAge = (date) => moment().diff(getDate(date).YMD, 'years');
 
+export const parseDateForInput = (date) => getDate(date).YMD;
+
 export const parseInputDate = (str) => moment(str, 'YYYY-MM-DD').toDate();
 
 export const parseHTML = (HTML, replaceValues) => {

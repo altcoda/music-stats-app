@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
-import { Form } from './Forms/Form';
-import { editUser } from '../utils/users';
+import { Form } from '../Forms/Form';
+import { editUser } from '../../utils/users';
 import { FaUserEdit } from 'react-icons/fa';
-import { IconStyleSwitch } from '../components/UI/IconStyleSwitch';
+import { IconStyleSwitch } from './IconStyleSwitch';
 
 
 export const EditImageSettings = ({user, id, setUser, icon, setIcon, iconBorderStyle, setIconBorderStyle, cover, setCover}) => {

@@ -9,11 +9,11 @@ export const Navbar = () => {
   const {user, setUser} = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const toggleUserMenu = (e) => Array.from(document.querySelector('#user-nav > ul').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
+  const toggleUserMenu = () => Array.from(document.querySelector('#user-nav > ul').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
 
-  const toggleAlbumsMenu = (e) => Array.from(document.querySelector('.albums-nav').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
+  const toggleAlbumsMenu = () => Array.from(document.querySelector('.albums-nav').querySelectorAll('.dropdown')).map((li) => li.classList.toggle('hidden'));
 
-  const onUserLogout = (e) => {
+  const onUserLogout = () => {
     logoutUser()
     toggleUserMenu()
     setUser(null)
@@ -30,14 +30,13 @@ export const Navbar = () => {
         </ul>
         
         <ul onMouseEnter={toggleAlbumsMenu} onMouseLeave={toggleAlbumsMenu} id="albums-nav" className="albums-nav" aria-label="albums">
-            <li style={{height: '70px'}} onClick={toggleAlbumsMenu}>
+            <li className='navbar-item'>
                 Albums
             </li>
             <li className="dropdown hidden">
                 <Link to="/albums">All Albums</Link>
             </li>
-            {user &&
-            <Fragment>
+            {user && <Fragment>
             <li className="dropdown hidden">
                 <Link to="/useralbums">
                   User Albums
@@ -52,10 +51,10 @@ export const Navbar = () => {
         </ul>
       </nav>
 
-      {user && (
+      {user &&
         <nav onMouseEnter={toggleUserMenu} onMouseLeave={toggleUserMenu} id="user-nav" className="user-nav" aria-label="user">
           <ul>
-            <li className="icon" onClick={toggleUserMenu}>
+            <li className="icon">
               <img src={user.icon && user.icon} alt="user icon" />
             </li>
             <li className="dropdown hidden">
@@ -66,16 +65,16 @@ export const Navbar = () => {
             </li>
           </ul>
         </nav>
-      )}
+      }
 
-      {!user && (
+      {!user && 
         <nav id="guest-nav" className="guest-nav" aria-label="guest">
           <ul>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
           </ul>
         </nav>
-      )}
+      }
     </div>
   );
 };

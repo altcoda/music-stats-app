@@ -19,6 +19,7 @@ const getHeaders = (options) => {
     }
 }
 
+
 export const getResponse = async({url, query}, headers) => {
     return await axios.get(
         [ process.env.REACT_APP_LAST_FM_API_URL, url, query ].join(''),
@@ -156,7 +157,7 @@ export const getLikedAlbums = async(userId) => {
         albums = await likedAlbums.map(album => getUserAlbum(album.id));
     }
 
-    return Promise.all(albums) || []
+    return Promise.all(albums)
 }
 
 // like or remove like
@@ -173,7 +174,7 @@ export const likeAlbum = async(id, userId) => {
     if(likedAlbums) {
         const isLiked = Object.values(likedAlbums).some(album => album.id === id);
     
-        if(isLiked === true) {
+        if(isLiked) {
             user.set('likedAlbums', likedAlbums.filter(album => album.id !== id));
             
             try {
@@ -181,15 +182,17 @@ export const likeAlbum = async(id, userId) => {
             } catch(err) {
                 console.log(err.message)
             }
-            return
+
+        } else {
+            user.add('likedAlbums', album.toPointer());
+
+            try {
+                await user.save();
+            } catch(err) {
+                console.log(err.message)
+            }
         }
     }
-
-    user.add('likedAlbums', album.toPointer());
-
-    try {
-        await user.save();
-    } catch(err) {
-        console.log(err.message)
-    }
+    
+    return
 }

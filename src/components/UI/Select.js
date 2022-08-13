@@ -1,19 +1,20 @@
 import Select from 'react-select';
 import { Fragment, useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalProvider';
+import { genres } from '../../data/genres';
 
 
 export const SelectTags = ({setTags, defaultTags}) => {
-    const {tagOptions} = useContext(GlobalContext);
-    const selectedOptions = defaultTags && tagOptions.filter(tag => defaultTags.includes(tag.value));
+    const selectedOptions = defaultTags && genres.filter(tag => defaultTags.includes(tag.value));
 
-    return(tagOptions &&
+    return(genres &&
         <Fragment>
             <label htmlFor="tags">Tags</label>
             <Select
                 id="select-tags"
                 defaultValue={selectedOptions}
-                options={tagOptions}
+                options={genres}
+                placeholder="Select tags..."
                 className="select-tags"
                 isMulti
                 name="tags"
@@ -28,16 +29,15 @@ export const SelectTags = ({setTags, defaultTags}) => {
 
 
 export const SelectTag = () => {
-    const {tagOptions} = useContext(GlobalContext);
     const {query, setQuery} = useContext(GlobalContext);
 
-    return(tagOptions &&
+    return(genres &&
         <Fragment>
             <label htmlFor="tag" className="hidden">Tag</label>
             <Select
                 id="select-tags"
                 defaultValue={[]}
-                options={tagOptions}
+                options={genres}
                 placeholder="Select tag..."
                 className="select-tags"
                 name="tag"

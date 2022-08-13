@@ -2,16 +2,18 @@ import './ProfilePage.css';
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Header } from '../components/Header';
-import { getAge, getDate } from '../utils/global';
+import { parseDateForInput, getAge } from '../utils/global';
 import { getCurrentUser, getUser } from '../utils/users';
 import { LikedAlbums } from '../components/LikedAlbums';
-import { EditUserInfo } from '../components/EditUserInfo';
-import { EditImageSettings } from '../components/EditImageSettings';
+import { EditUserInfo } from '../components/Settings/EditUserInfo';
+import { EditImageSettings } from '../components/Settings/EditImageSettings';
 import { getLikedAlbums } from '../utils/crud';
+import { Spinner } from '../components/UI/Spinner';
 
 
 export const ProfilePage = () => {
 
+    const [loading, setLoading] = useState(true);
     const {id} = useParams();
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
@@ -38,7 +40,7 @@ export const ProfilePage = () => {
             const data = await getLikedAlbums(userId);
             setLikedAlbums(data)
         }
-        initLikedAlbums(id)
+        initLikedAlbums(id).then(setLoading(false))
     },[])
 
     useEffect(() => {
@@ -46,7 +48,7 @@ export const ProfilePage = () => {
             setDescription(user.description)
         }
         if(user.birthdate) {
-            setBirthdate(getDate(user.birthdate).YMD)
+            setBirthdate(parseDateForInput(user.birthdate))
         }
         if(user.iconBorderStyle) {
             setIconBorderStyle(user.iconBorderStyle)
@@ -64,7 +66,9 @@ export const ProfilePage = () => {
 
     return (
         <Fragment>
-            {user &&
+            {loading ? 
+            <Spinner /> :
+            user &&
             <div className="flex-column profile">
                 <Header id="profile-header" bgd={user.cover && `url('${user.cover}')`} />
                 <div className="flex-column user-info">

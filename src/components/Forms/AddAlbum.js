@@ -7,6 +7,7 @@ import { SelectTags } from '../UI/Select';
 
 
 export const AddAlbumForm = () => {
+
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');
     const [tags, setTags] = useState([]);
@@ -14,7 +15,6 @@ export const AddAlbumForm = () => {
     const [date, setDate] = useState(null);
     const [cover, setCover] = useState(null);
     const navigate = useNavigate();
-
 
     const onAddAlbum = (e) => {
         e.preventDefault();
@@ -30,7 +30,6 @@ export const AddAlbumForm = () => {
     }
 
     const uploadImage = async(e) => {
-        //const file = e.target.files[0];
         setCover(e.target.value);
     }
 

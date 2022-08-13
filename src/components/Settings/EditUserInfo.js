@@ -1,8 +1,9 @@
 import { Fragment } from 'react';
-import { editUser } from '../utils/users';
-import { Form } from './Forms/Form';
+import { editUser } from '../../utils/users';
+import { Form } from '../Forms/Form';
 import { FaUserEdit, FaRegWindowClose } from 'react-icons/fa';
-import { parseInputDate } from '../utils/global';
+import { parseInputDate } from '../../utils/global';
+import { ThemeSwitch } from './ThemeSwitch';
 
 
 export const EditUserInfo = ({user, id, description, setDescription, birthdate, setBirthdate}) => {
@@ -20,13 +21,11 @@ export const EditUserInfo = ({user, id, description, setDescription, birthdate, 
     const onSaveUserInfo = (e) => {
         e.preventDefault()
 
-        if(user && id) {
-            if(description !== '') {
-                editUser(id, {description})
-            }
-            if(birthdate !== '') {
-                editUser(id, {birthdate: parseInputDate(birthdate)})
-            }
+        if(description !== '') {
+            editUser(id, {description})
+        }
+        if(birthdate !== '') {
+            editUser(id, {birthdate: parseInputDate(birthdate)})
         }
 
         toggleEditUserInfo()
@@ -56,6 +55,7 @@ export const EditUserInfo = ({user, id, description, setDescription, birthdate, 
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
+                    {/* <ThemeSwitch /> */}
                 <button type="submit" className="green">Save</button>
             </Form>
         </Fragment>
