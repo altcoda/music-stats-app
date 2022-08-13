@@ -1,5 +1,8 @@
 import { Navigate } from 'react-router-dom';
 
 export const PrivateRoute = ({ children, isAuth }) => {
-  return isAuth ? children : <Navigate to='/' />;
+  if(isAuth && isAuth === null) {
+    return <Navigate to='/' />
+  }
+  return children;
 }
