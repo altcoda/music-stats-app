@@ -32,7 +32,7 @@ export const App = () => {
                     {routes.map((route) => <Route path={route.path} element={route.element} />)}
                     
                     {privateRoutes.map((route) =>
-                        <Route path={route.path} element={<PrivateRoute isAuth={user}>
+                        <Route path={route.path} element={<PrivateRoute>
                             {route.element}
                         </PrivateRoute>} />
                     )}
