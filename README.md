@@ -17,7 +17,7 @@ I used the following:
 - View details about the albums/artists.
 - Register, login, logout, password reset.
 - Albums dropdown:
-   - **User Albums:** Anyone can view albums from other users.
+   - **User Albums:** Logged in users can view albums from other users.
    - **Add Album:** Logged in users can submit albums and view them as well as edit/delete. You can like albums added by others.
 - **Edit your profile** with live preview.
 
